@@ -21,6 +21,9 @@ class UpdateBookImageHandler extends BookHandler
         if (!array_key_exists('bookId', $attributes)) {
             return $this->createHandlerResponse(self::$MISSING_HANDLER, false);
         }
+        if (!array_key_exists('images', $attributes)) {
+            return parent::handle($attributes);
+        }
         $bookService = $this->createHandlerService();
         $bookUpdateAttribute['images'] = $attributes['images'];
         $bookService->updateModel($bookUpdateAttribute, $attributes['bookId']);
