@@ -4,21 +4,21 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
+class ComposerStaticInit25548836b9a801379c6d97eed1d88100
 {
     public static $files = array (
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
     );
 
@@ -134,8 +134,8 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -362,6 +362,7 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
     public static $classMap = array (
         'App\\BookQuantity' => __DIR__ . '/../..' . '/app/Models/BookQuantity.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Decorators\\AccountDecorators\\ChangePassword\\ChangePasswordDecorator' => __DIR__ . '/../..' . '/app/Decorators/AccountDecorators/ChangePassword/ChangePasswordDecorator.php',
         'App\\Decorators\\AccountDecorators\\CreateAccount\\CreateUserDecorator' => __DIR__ . '/../..' . '/app/Decorators/AccountDecorators/CreateAccount/CreateUserDecorator.php',
         'App\\Decorators\\AccountDecorators\\CreateAccount\\CreateUserProxy' => __DIR__ . '/../..' . '/app/Decorators/AccountDecorators/CreateAccount/CreateUserProxy.php',
         'App\\Decorators\\AccountDecorators\\EloquentUserDecorator' => __DIR__ . '/../..' . '/app/Decorators/AccountDecorators/EloquentUserDecorator.php',
@@ -373,12 +374,15 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
         'App\\Decorators\\BookDecorators\\BorrowBook\\BorrowBookTransactionDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookDecorators/BorrowBook/BorrowBookTransactionDecorator.php',
         'App\\Decorators\\BookDecorators\\CreateBookDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookDecorators/CreateBookDecorator.php',
         'App\\Decorators\\BookDecorators\\EloquentBookDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookDecorators/EloquentBookDecorator.php',
+        'App\\Decorators\\BookDecorators\\GetAllBookDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookDecorators/GetAllBookDecorator.php',
+        'App\\Decorators\\BookDecorators\\UpdateBookDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookDecorators/UpdateBookDecorator.php',
         'App\\Decorators\\BookHistoryDecorator\\EloquentBookHistoryDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookHistoryDecorator/EloquentBookHistoryDecorator.php',
         'App\\Decorators\\BookHistoryDecorator\\RentBook\\RentBookDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookHistoryDecorator/RentBook/RentBookDecorator.php',
         'App\\Decorators\\BookHistoryDecorator\\RentBook\\RentBookTransactionDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookHistoryDecorator/RentBook/RentBookTransactionDecorator.php',
         'App\\Decorators\\BookHistoryDecorator\\ReturnBook\\ReturnBookDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookHistoryDecorator/ReturnBook/ReturnBookDecorator.php',
         'App\\Decorators\\BookHistoryDecorator\\ReturnBook\\ReturnBookTransactionDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookHistoryDecorator/ReturnBook/ReturnBookTransactionDecorator.php',
         'App\\Decorators\\BookHistoryDecorator\\UpdateHistoryDecorator' => __DIR__ . '/../..' . '/app/Decorators/BookHistoryDecorator/UpdateHistoryDecorator.php',
+        'App\\Decorators\\CardDecorator\\CreateCardProxy' => __DIR__ . '/../..' . '/app/Decorators/CardDecorator/CreateCardProxy.php',
         'App\\Decorators\\CardDecorator\\EloquentCardDecorator' => __DIR__ . '/../..' . '/app/Decorators/CardDecorator/EloquentCardDecorator.php',
         'App\\Decorators\\CardDecorator\\RenewedCardDecorator' => __DIR__ . '/../..' . '/app/Decorators/CardDecorator/RenewedCardDecorator.php',
         'App\\Decorators\\CardDecorator\\RenewedCardTransactionDecorator' => __DIR__ . '/../..' . '/app/Decorators/CardDecorator/RenewedCardTransactionDecorator.php',
@@ -394,6 +398,7 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
         'App\\Decorators\\Handlers\\Book\\BookCopy\\CreateBookCopyHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/BookCopy/CreateBookCopyHandler.php',
         'App\\Decorators\\Handlers\\Book\\BookCopy\\CreateBookID' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/BookCopy/CreateBookID.php',
         'App\\Decorators\\Handlers\\Book\\BookCopy\\GetBookCopy\\CheckAvailableBookCopyHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/BookCopy/GetBookCopy/CheckAvailableBookCopyHandler.php',
+        'App\\Decorators\\Handlers\\Book\\BookCopy\\GetBookCopy\\CountAvailableHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/BookCopy/GetBookCopy/CountAvailableHandler.php',
         'App\\Decorators\\Handlers\\Book\\BookCopy\\GetBookCopy\\GetAvailableBookCopyHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/BookCopy/GetBookCopy/GetAvailableBookCopyHandler.php',
         'App\\Decorators\\Handlers\\Book\\BookCopy\\UpdateBookCopy\\UpdateBookCopyStateHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/BookCopy/UpdateBookCopy/UpdateBookCopyStateHandler.php',
         'App\\Decorators\\Handlers\\Book\\BookCopy\\UpdateBookCopy\\UpdateNegativeStateHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/BookCopy/UpdateBookCopy/UpdateNegativeStateHandler.php',
@@ -416,7 +421,9 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
         'App\\Decorators\\Handlers\\Book\\Book\\GetBook\\GetAuthorBookHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/Book/GetBook/GetAuthorBookHandler.php',
         'App\\Decorators\\Handlers\\Book\\Book\\GetBook\\GetGenreBookHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/Book/GetBook/GetGenreBookHandler.php',
         'App\\Decorators\\Handlers\\Book\\Book\\GetBook\\GetPublisherBookHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/Book/GetBook/GetPublisherBookHandler.php',
+        'App\\Decorators\\Handlers\\Book\\Book\\UpdateBookImageHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Book/Book/UpdateBookImageHandler.php',
         'App\\Decorators\\Handlers\\Card\\CardHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Card/CardHandler.php',
+        'App\\Decorators\\Handlers\\Card\\CheckCardExistHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Card/CheckCardExistHandler.php',
         'App\\Decorators\\Handlers\\Card\\CheckCardLimitHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Card/CheckCardLimitHandler.php',
         'App\\Decorators\\Handlers\\Card\\CreateCardHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Card/CreateCardHandler.php',
         'App\\Decorators\\Handlers\\Card\\RenewedCardHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Card/RenewedCardHandler.php',
@@ -425,10 +432,14 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
         'App\\Decorators\\Handlers\\HandlerResponseCreators\\HandlerResponse' => __DIR__ . '/../..' . '/app/Decorators/Handlers/HandlerResponseCreators/HandlerResponse.php',
         'App\\Decorators\\Handlers\\Handlerable' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Handlerable.php',
         'App\\Decorators\\Handlers\\Image\\Create\\CreateBookImageHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Image/Create/CreateBookImageHandler.php',
+        'App\\Decorators\\Handlers\\Image\\Delete\\RemoveImageHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Image/Delete/RemoveImageHandler.php',
+        'App\\Decorators\\Handlers\\Image\\EloquentImageHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Image/EloquentImageHandler.php',
         'App\\Decorators\\Handlers\\Image\\Upload\\UploadBookImageHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Image/Upload/UploadBookImageHandler.php',
         'App\\Decorators\\Handlers\\Image\\Upload\\UploadImageHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Image/Upload/UploadImageHandler.php',
+        'App\\Decorators\\Handlers\\Role\\FindRoleHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Role/FindRoleHandler.php',
         'App\\Decorators\\Handlers\\Role\\RoleHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/Role/RoleHandler.php',
         'App\\Decorators\\Handlers\\User\\CreateUserHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/User/CreateUserHandler.php',
+        'App\\Decorators\\Handlers\\User\\HashPasswordHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/User/HashPasswordHandler.php',
         'App\\Decorators\\Handlers\\User\\UserHandler' => __DIR__ . '/../..' . '/app/Decorators/Handlers/User/UserHandler.php',
         'App\\Decorators\\ImageDecorator\\EloquentImageDecorator' => __DIR__ . '/../..' . '/app/Decorators/ImageDecorator/EloquentImageDecorator.php',
         'App\\Decorators\\PublisherDecorators\\EloquentPublisherDecorator' => __DIR__ . '/../..' . '/app/Decorators/PublisherDecorators/EloquentPublisherDecorator.php',
@@ -440,12 +451,14 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
         'App\\Http\\Controllers\\API\\APIController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/APIController.php',
         'App\\Http\\Controllers\\API\\AuthorController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthorController.php',
         'App\\Http\\Controllers\\API\\BookController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/BookController.php',
+        'App\\Http\\Controllers\\API\\BookCopyController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/BookCopyController.php',
         'App\\Http\\Controllers\\API\\BookHistoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/BookHistoryController.php',
         'App\\Http\\Controllers\\API\\CardController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CardController.php',
         'App\\Http\\Controllers\\API\\GenreController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/GenreController.php',
         'App\\Http\\Controllers\\API\\ImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/ImageController.php',
         'App\\Http\\Controllers\\API\\PublisherController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/PublisherController.php',
         'App\\Http\\Controllers\\API\\QuantityController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/QuantityController.php',
+        'App\\Http\\Controllers\\API\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/RoleController.php',
         'App\\Http\\Controllers\\API\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/UserController.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -481,6 +494,7 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
         'App\\Http\\Controllers\\Requests\\API\\Book\\BookImportRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Book/BookImportRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\Book\\BookPatchRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Book/BookPatchRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\Book\\BookPostRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Book/BookPostRequest.php',
+        'App\\Http\\Controllers\\Requests\\API\\Book\\BookSearchRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Book/BookSearchRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\Card\\CardPostRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Card/CardPostRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\Card\\CardRenewedRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Card/CardRenewedRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\Genre\\GenreDeleteRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Genre/GenreDeleteRequest.php',
@@ -499,6 +513,7 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
         'App\\Http\\Controllers\\Requests\\API\\Role\\RoleGetRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Role/RoleGetRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\Role\\RolePatchRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Role/RolePatchRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\Role\\RolePostRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/Role/RolePostRequest.php',
+        'App\\Http\\Controllers\\Requests\\API\\User\\UserChangePasswordRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/User/UserChangePasswordRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\User\\UserDeleteRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/User/UserDeleteRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\User\\UserGetRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/User/UserGetRequest.php',
         'App\\Http\\Controllers\\Requests\\API\\User\\UserLoginRequest' => __DIR__ . '/../..' . '/app/Http/Controllers/Requests/API/User/UserLoginRequest.php',
@@ -4092,10 +4107,10 @@ class ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitbc86cc14fdee4aa19a230779be51fd3a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit25548836b9a801379c6d97eed1d88100::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit25548836b9a801379c6d97eed1d88100::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit25548836b9a801379c6d97eed1d88100::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit25548836b9a801379c6d97eed1d88100::$classMap;
 
         }, null, ClassLoader::class);
     }
