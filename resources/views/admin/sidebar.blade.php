@@ -48,7 +48,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('listBook')}}"><i class="fa fa-circle-o"></i> Danh sách sách </a></li>
-            <li><a href="{{route('listBookQuantity')}}"><i class="fa fa-circle-o"></i> Số lượng Sách </a></li>
+            <!-- <li><a href="{{route('listBookQuantity')}}"><i class="fa fa-circle-o"></i> Số lượng Sách </a></li> -->
             <!-- <li><a href="{{route('listBookImage')}}"><i class="fa fa-circle-o"></i> Book Image </a></li> -->
             <!-- <li><a href="{{route('listAuthorBook')}}"><i class="fa fa-circle-o"></i> Author Book </a></li> -->
             <!-- <li><a href="{{route('listBookGenre')}}"><i class="fa fa-circle-o"></i> Book Genre </a></li> -->
@@ -61,7 +61,7 @@
 
         <li><a href="{{route('listReturnBook')}}"><i class="fa fa-share "></i> <span>Sách đã trả</span></a></li>
 
-        <li><a href="{{route('listBookHistory')}}"><i class="fa fa-book"></i> <span>Lịch sử Sách</span></a></li>
+        <li><a href="{{route('listBookHistory')}}"><i class="fa fa-book"></i> <span>Lịch sử </span></a></li>
         <li class="header">LABELS</li>
         <li><a href="{{route('listPublisher')}}"><i class="fa fa-circle-o text-red"></i> <span>Nhà xuất bản</span></a></li>
         <li><a href="{{route('listAuthor')}}" id="list_author"><i class="fa fa-circle-o text-yellow"></i> <span>Tác giả</span></a></li>

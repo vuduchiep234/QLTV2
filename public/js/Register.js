@@ -13,7 +13,7 @@ jQuery(function ($) {
         }else {
             $.ajax({
 
-                url: "http://127.0.0.1:8000/api/v1/users/register",
+                url: "/api/v1/users/register",
                 type: 'post',
                 dataType: "json",
                 data: {
@@ -26,7 +26,7 @@ jQuery(function ($) {
                 },
                 success: function () {
                     alert("success!");
-                    window.location.href = "http://127.0.0.1:8000/login"
+                    window.location.href = "/login"
                     alert("success!");
                 },
                 error: function (err) {

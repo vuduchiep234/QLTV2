@@ -34,19 +34,24 @@
 					</div>
 					<div class="row">
 
-						@foreach($list as $book)
-						<div class="single-popular-carusel col-lg-3 col-md-6">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="{{$book->imageURL}}" alt="">
+						<div class="active-popular-carusel" id="">
+							@foreach($list as $book)
+							<div class="single-popular-carusel">
+							
+								<div class="thumb-wrap relative">
+									<div class="thumb relative">
+										<div class="overlay overlay-bg"></div>
+
+										<a id="{{$book->id}}" href="{{route('detailBook', $book->id)}}">
+											<img style="width: 270px; height: 300px" class="img-fluid" src="{{$book->imageURL}}" alt="">
+										</a>
+									</div>
+									<div class="meta d-flex justify-content-between">
+										<p><span class="lnr lnr-users"></span>  <span class="lnr lnr-bubble"></span></p>
+										<h4>{{$book->quantity}}</h4>
+									</div>
 								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span>  <span class="lnr lnr-bubble"></span></p>
-									<h4>{{$book->quantity}}</h4>
-								</div>
-							</div>
-							<div class="details">
+								<div class="details">
 									<a id="{{$book->id}}" href="{{route('detailBook', $book->id)}}">
 										<h4>
 											{{$book->title}}
@@ -59,8 +64,11 @@
 										Năm xuất bản: {{$book->publishedYear}}
 									</p>
 								</div>
+								
+							</div>
+							@endforeach
 						</div>
-						@endforeach
+
 
 
 					</div>
