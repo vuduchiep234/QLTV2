@@ -26,7 +26,7 @@ jQuery(function ($) {
                 },
                 success: function () {
                     alert("success!");
-                    window.location.href = "/login"
+                    window.location.href = "/homePage"
                     alert("success!");
                 },
                 error: function (err) {
