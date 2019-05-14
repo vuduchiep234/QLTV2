@@ -31,7 +31,7 @@
 								<img class="img-fluid" src="{{$book->imageURL}}" alt="">
 							</div>
 							@endforeach
-							<div class="jq-tab-wrapper" id="horizontalTab">
+							<!-- <div class="jq-tab-wrapper" id="horizontalTab">
 	                            <div class="jq-tab-menu">
 	                                <div class="jq-tab-title active" data-tab="1">Objectives</div>
 	                                <div class="jq-tab-title" data-tab="2">Eligibility</div>
@@ -40,7 +40,7 @@
 	                                <div class="jq-tab-title" data-tab="5">Reviews</div>
 	                            </div>
 
-	                        </div>
+	                        </div> -->
 						</div>
 						<div class="col-lg-4 right-contents">
 							<ul>

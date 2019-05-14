@@ -50,10 +50,12 @@
 								Thư viện Đại học Bách Khoa Hà Nội
 							</h1>
 							<p class="pt-10 pb-10">
-								aaaaaaaaaaaaaaaaaaaaaaaaaaaa
+								
 
 							</p>
-							<a href="#" class="primary-btn text-uppercase">Get Started</a>
+							@if(!Session::has('user_id'))
+							<a href="{{route('login')}}" class="primary-btn text-uppercase">Get Started</a>
+							@endif
 						</div>
 					</div>
 				</div>

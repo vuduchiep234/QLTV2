@@ -23,10 +23,13 @@
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
+							@foreach($list as $book)
 							<div class="title text-center">
-								<h1 class="mb-10">Popular Courses we offer</h1>
-								<p>There is a moment in the life of any aspiring.</p>
+								<h1 class="mb-10">{{$book->genreType}}</h1>
+								<p>Tong hop sach theo the loai</p>
 							</div>
+							@break
+							@endforeach
 						</div>
 					</div>
 					<div class="row">
@@ -39,8 +42,8 @@
 									<img class="img-fluid" src="{{$book->imageURL}}" alt="">
 								</div>
 								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
+									<p><span class="lnr lnr-users"></span><span class="lnr lnr-bubble"></span></p>
+									<h4>{{$book->quantity}}</h4>
 								</div>
 							</div>
 							<div class="details">

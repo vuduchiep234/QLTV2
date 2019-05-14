@@ -112,13 +112,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CardRepository::class, EloquentCardRepository::class);
 
 
-//        $author['listAuthor'] = Author::all();
-//        $genre['listGenre'] = Genre::all();
-//        $publisher['listPublisher'] = Publisher::all();
-//
-//        View::share($author);
-//        View::share($genre);
-//        View::share($publisher);
+       $author['listAuthor'] = Author::all();
+       $genre['listGenre'] = Genre::all();
+       $publisher['listPublisher'] = Publisher::all();
+
+       View::share($author);
+       View::share($genre);
+       View::share($publisher);
 
     }
 }

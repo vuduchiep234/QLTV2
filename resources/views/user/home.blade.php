@@ -23,12 +23,12 @@
 								<div class="overlay overlay-bg"></div>
 
 								<a id="{{$book->id}}" href="{{route('detailBook', $book->id)}}">
-									<img style="width: 250px; height: 300px" class="img-fluid" src="{{$book->imageURL}}" alt="">
+									<img style="width: 270px; height: 300px" class="img-fluid" src="{{$book->imageURL}}" alt="">
 								</a>
 							</div>
 							<div class="meta d-flex justify-content-between">
-								<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-								<h4>$150</h4>
+								<p><span class="lnr lnr-users"></span>  <span class="lnr lnr-bubble"></span></p>
+								<h4>{{$book->quantity}}</h4>
 							</div>
 						</div>
 						<div class="details">
