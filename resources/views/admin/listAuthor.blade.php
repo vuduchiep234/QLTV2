@@ -46,7 +46,7 @@
 
                     @foreach($list as $author)
 
-                        <tr>
+                        <tr row_id_author="<?php echo $author->id; ?>">
                             <td class="text-center">{{$author->id}}</td>
                             <td class="text-center">{{$author->name}}</td>
                             <td class="text-center">
@@ -71,6 +71,7 @@
         </div>
         <!-- /.box-body -->
     </div>
+    <div style="margin-left: 0px;">{!! $list->links() !!}</div>
     <!-- /.box -->
 
     <!-- /.content -->

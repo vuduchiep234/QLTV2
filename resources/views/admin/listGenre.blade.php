@@ -35,7 +35,7 @@
                 <thead>
                 <tr>
                     <th class="text-center">ID</th>
-                    <th class="text-center">Tên thể loại</th>
+                    <th class="text-center">Thể loại</th>
 
                     <th class="text-center">Sửa</th>
                     <th class="text-center">Xóa</th>
@@ -45,7 +45,7 @@
 
                     @foreach($list as $genre)
 
-                        <tr>
+                        <tr row_id_genre="<?php echo $genre->id; ?>">
                             <td class="text-center">{{$genre->id}}</td>
                             <td class="text-center">{{$genre->genreType}}</td>
                             <td class="text-center">
@@ -68,9 +68,11 @@
                 </tbody>
 
             </table>
+            <div style="margin-left: 10px;">{!! $list->links() !!}</div>
         </div>
         <!-- /.box-body -->
     </div>
+    
     <!-- /.box -->
 
     <!-- /.content -->
