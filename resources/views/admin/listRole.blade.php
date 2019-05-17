@@ -44,7 +44,7 @@
                 <tbody id="body_list_role">
                     @foreach($list as $role)
 
-                        <tr>
+                        <tr row_id_role="<?php echo $role->id; ?>">
                             <td class="text-center">{{$role->id}}</td>
                             <td class="text-center">{{$role->roleType}}</td>
                             <td class="text-center">
@@ -69,6 +69,7 @@
             </div>
             <!-- /.box-body -->
         </div>
+        <div style="margin-left: 0px;">{!! $list->links() !!}</div>
         <!-- /.box -->
 
     <!-- /.content -->

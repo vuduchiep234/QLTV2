@@ -22,14 +22,14 @@ class AdminController extends Controller
 
     public function getListRole(){
 
-        $data['list'] = Role::paginate(10);
+        $data['list'] = Role::paginate(2);
         return view('admin.listRole', $data);
     	
     }
 
     public function getListUser(){
 
-        $data['list'] = User::paginate(10);
+        $data['list'] = User::paginate(2);
         $data['listR'] = Role::all();
         return view('admin.listUser', $data);
     	
@@ -65,7 +65,7 @@ class AdminController extends Controller
     }
 
     public function getListAuthor(){
-        $data['list'] = Author::paginate(10);
+        $data['list'] = Author::paginate(2);
         return view('admin.listAuthor', $data);
     }
 

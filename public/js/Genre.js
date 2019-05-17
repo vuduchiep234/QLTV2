@@ -77,31 +77,20 @@ jQuery(function($) {
             url: '/api/v1/genres/patch?id='+id,
             type: 'patch',
             dataType: "json",
-            data: {genreType: data, _method: "patch"},
+            data: {genreType: data},
             success: function () {
                 alert('success!');
                 $('#editModal-genre').modal('hide');
-                load_data_genre();
+                loaddata_genre(id);
             },
             error: function(mess){
                 alert("error! Please, try again.");
                 // alert(mess);
                 $('#editModal-genre').modal('hide');
-                load_data_genre();
+                
             }
         });
     });
-
-  //   $('.delete_genre').on('click', function(){
-
-  //   	var id = $(this).attr("id");
-
-  //       $('#genre-delete').val(id);
-		// $('#deleteModal-genre').modal('show');
-		
-
-
-  //   });
 
     $('a[data-type=delete-genre]').on('click', function(){
 
@@ -128,13 +117,11 @@ jQuery(function($) {
                 
                 url: '/api/v1/genres/delete/'+id,
                 type: 'delete',
-                data: {id: id, _method: "delete"},
+                data: {id: id},
             success: function () {
                 alert('success!');
                 $('#deleteModal-genre').modal('hide');
-               load_data_genre();
-
-                
+                $("tr[row_id_genre="+id+"]").remove();      
 
             },
             error: function(mess){
@@ -155,7 +142,7 @@ jQuery(function($) {
                 var output = "";
                 for(var i = 0; i < data.length; i++){
 
-                    output +=   "<tr>"
+                    output =   "<tr row_id_genre="+data[i].id+">"
                         +"<td class='text-center'>"+data[i].id+"</td>"
                         +"<td class='text-center'>"+data[i].genreType+"</td>"
 
@@ -173,7 +160,81 @@ jQuery(function($) {
                         +"</tr>";
 
                 }
-                $('#body_list_genre').html(output);
+                $("tr[row_id_genre="+data[i-2].id+"]").after(output);
+
+
+                $('a[data-type=update-genre]').on('click', function(){
+
+
+                    var id = $(this).attr("id_edit_genre");
+                    var name = $(this).attr("name");
+
+                    $.ajax({
+
+                        url: '/api/v1/genres/get/'+id,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(data) {
+                            name = data.genreType;
+                            // alert(name);
+                            $('#genre-type').val(name);
+                        },
+                        error: function(mess){
+                            alert("Loi gi nay");
+                            console.log(mess);
+                        }
+                    });
+
+
+                    $('#genre-id').val(id);
+                    $('#editModal-genre').modal('show');
+                });
+
+                $('a[data-type=delete-genre]').on('click', function(){
+
+                    var id = $(this).attr("id_delete_genre");
+                    alert(id);
+
+                    $('#genre-delete').val(id);
+                    $('#deleteModal-genre').modal('show');
+
+                });
+            },
+            error: function(err){
+                alert(err);
+            }
+        });
+    }
+
+    function loaddata_genre(id) {
+        $.ajax({
+
+            url: '/api/v1/genres/get/'+id,
+            type: 'get',
+            dataType: 'json',
+            success: function(data) {
+                var output = "";
+                // for(var i = 0; i < data.length; i++){
+
+                    output = 
+                        "<td class='text-center'>"+data.id+"</td>"
+                        +"<td class='text-center'>"+data.genreType+"</td>"
+
+                        +"<td class='text-center'>"
+                        +"<a href='' class='text-blue' data-toggle='modal' id_edit_genre="+data.id+" data-type='update-genre' name="+data.genreType+">"
+                        +"<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                        +"</a>"
+                        +"</td>"
+                        +"<td class='text-center'>"
+                        +"<a href='' class='text-red' data-toggle='modal' id_delete_genre="+data.id+" data-type='delete-genre'>"
+                        +"<i class='ace-icon fa fa-trash-o bigger-130'></i>"
+                        +"</a>"
+                        +"</td>"
+
+                    ;
+
+                // }
+                $("tr[row_id_genre="+data.id+"]").html(output);
 
 
                 $('a[data-type=update-genre]').on('click', function(){

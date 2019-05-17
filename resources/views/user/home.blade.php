@@ -14,10 +14,11 @@
 		</div>
 		<div class="row" id="list_book">
 			<div class="active-popular-carusel" id="_list_book">
-				<input type="hidden" name="publisher" id="publisher" value="">
-
+				<!-- <input type="hidden" name="publisher" id="publisher" value="">
+ -->
 				@foreach($list as $book)
 					<div class="single-popular-carusel">
+						
 						<div class="thumb-wrap relative">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
@@ -28,7 +29,7 @@
 							</div>
 							<div class="meta d-flex justify-content-between">
 								<p><span class="lnr lnr-users"></span>  <span class="lnr lnr-bubble"></span></p>
-								<h4>{{$book->quantity}}</h4>
+								<h4 style="color: red;">{{$book->quantity}}</h4>
 							</div>
 						</div>
 						<div class="details">
@@ -44,6 +45,7 @@
 								Năm xuất bản: {{$book->publishedYear}}
 							</p>
 						</div>
+
 					</div>
 				@endforeach
 			</div>

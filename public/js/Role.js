@@ -81,7 +81,7 @@ jQuery(function($) {
             success: function () {
                 alert('success!');
                 $('#editModal-role').modal('hide');
-                Loaddata_role();
+                load_data_role(id);
             },
             error: function(mess){
                 alert("error! Please, try again.");
@@ -124,7 +124,7 @@ jQuery(function($) {
             success: function () {
                 alert('success!');
                 $('#deleteModal-role').modal('hide');
-                Loaddata_role();
+                $("tr[row_id_role="+id+"]").remove();
             },
             error: function(mess){
                 alert("error! Please, try again.");
@@ -147,7 +147,7 @@ jQuery(function($) {
                 var output = "";
                 for(var i = 0; i < data.length; i++){
 
-                    output +=   "<tr>"
+                    output =   "<tr row_id_role="+data[i].id+">"
                         +"<td class='text-center'>"+data[i].id+"</td>"
                         +"<td class='text-center'>"+data[i].roleType+"</td>"
 
@@ -165,7 +165,82 @@ jQuery(function($) {
                         +"</tr>";
 
                 }
-                $('#body_list_role').html(output);
+                $("tr[row_id_role="+data[i-2].id+"]").after(output);
+                $('a[data-type=update-role]').on('click', function(){
+
+
+                    var id = $(this).attr("id_edit_role");
+                    var name = $(this).attr("roleType");
+                    // alert(name);
+
+                    $.ajax({
+
+                        url: '/api/v1/roles/get/'+id,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(data) {
+                            name = data.roleType;
+                            // alert(name);
+                            $('#role-type').val(name);
+                        },
+                        error: function(mess){
+                            alert("Loi gi nay");
+                            console.log(mess);
+                        }
+                    });
+
+                    // $('#role-type').val(name);
+                    $('#role-id').val(id);
+                    $('#editModal-role').modal('show');
+                });
+
+                $('a[data-type=delete-role]').on('click', function(){
+
+                    var id = $(this).attr("id_delete_role");
+
+                    $('#role-delete').val(id);
+                    $('#deleteModal-role').modal('show');
+
+                });
+
+
+                // alert('success');
+            },
+            error: function(err){
+                alert(1);
+            }
+        });
+    }
+
+    function load_data_role(id) {
+        $.ajax({
+
+            url: '/api/v1/roles/get/'+id,
+            type: 'get',
+            dataType: 'json',
+            success: function(data) {
+                var output = "";
+                // for(var i = 0; i < data.length; i++){
+
+                    output =   
+                        "<td class='text-center'>"+data.id+"</td>"
+                        +"<td class='text-center'>"+data.roleType+"</td>"
+
+                        +"<td class='text-center'>"
+                        +"<a href='#' class='text-blue' data-toggle='modal' id_edit_role="+data.id+" data-type='update-role' name="+data.roleType+">"
+                        +"<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                        +"</a>"
+                        +"</td>"
+                        +"<td class='text-center'>"
+                        +"<a href='#' class='text-red delete_role' id_delete_role="+data.id+" data-type='delete-role'>"
+                        +"<i class='ace-icon fa fa-trash-o bigger-130'></i>"
+                        +"</a>"
+                        +"</td>"
+
+                    ;
+
+                // }
+                $("tr[row_id_role="+data.id+"]").html(output);
                 $('a[data-type=update-role]').on('click', function(){
 
 

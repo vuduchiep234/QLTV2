@@ -44,16 +44,16 @@
                     </tr>
                 </thead>
                 <tbody id="body_list_user">
-                    <!-- @foreach($list as $user)
+                    @foreach($list as $user)
 
-                        <tr>
+                        <tr row_id_user="<?php echo $user->id; ?>">
                             <td class="text-center">{{$user->id}}</td>
                             <td class="text-center">{{$user->name}}</td>
                             <td class="text-center">{{$user->email}}</td>
-                            <td class="text-center">{{$user->password}}</td>
-                            <td class="text-center">{{$user->role_id}}</td>
+                            <!-- <td class="text-center">{{$user->password}}</td> -->
+                            <td class="text-center">{{$user->role->roleType}}</td>
                             <td class="text-center">
-                                <a href="#" class="text-blue" id="<?php echo $user->id; ?>" name="{{$user->name}}" email="{{$user->email}}" password="{{$user->password}}" role_id="{{$user->role_id}}" data-type="update-user" data-toggle="modal">
+                                <a href="#" class="text-blue" id_edit_user="<?php echo $user->id; ?>" name="{{$user->name}}" email="{{$user->email}}" password="{{$user->password}}" role_id="{{$user->role_id}}" role="{{$user->role->roleType}}" data-type="update-user" data-toggle="modal">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
@@ -66,7 +66,7 @@
                             </td>
                         </tr>
 
-                    @endforeach -->
+                    @endforeach
 
                 </tbody>
 
@@ -74,6 +74,7 @@
             </div>
             <!-- /.box-body -->
         </div>
+         <div style="margin-left: 0px;">{!! $list->links() !!}</div>
         <!-- /.box -->
 
     <!-- /.content -->
