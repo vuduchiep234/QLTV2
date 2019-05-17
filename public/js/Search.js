@@ -12,39 +12,17 @@ function runScript(e) {
                 console.log(data);
                 var output = "";
                 for (var i = 0; i < data.length; i++) {
-                    console.log(data[i].title);
+                    var title = data[i].title;
+                    var publisher_id = data[i].publisher_id;
+                    var publisher_year = data[i].publishedYear;
                     var id = data[i].id;
                     var html =
                         "<div class='single-popular-carusel'>" +
-                        "<div class='thumb-wrap relative'>"+
-                            "<div class='thumb relative'>"+
-                            "<div class='overlay overlay-bg'></div>"+
-                            "<a id='" + id + "'href='{{route("+'detailBook,'+id+")}}'>" +
-                                 "<img style='width: 250px;height: 300px' class='img-fluid' src='' alt=''>"+
-                             "</a>"+
-                            "</div>"+
-                             "<div class='meta d-flex justify-content-between'>" +
-                             "<p><span class='lnr lnr-users'></span> 355 <span class='lnr lnr-bubble'></span>35</p>" +
-                             "<h4>$150</h4>" +
-                             "</div>" +
-                             "</div>" +
-                             "<div class='details'>" +
-                             "<a id='" + id + "'href='{{route("+'detailBook,'+id+")}}'>" +
-                             "<h4>" +title+"</h4>"+
-                             "</div>" +
-                             "</div>" +
-                        "</a>" +
-                         "<p>" +"Nhà xuất bản: "
-                    ;
-
-
-
-                    output = output +
-                        "<div class='single-popular-carusel'> <div class='thumb-wrap relative'> " +
+                        "<div class='thumb-wrap relative'>" +
                         "<div class='thumb relative'>" +
-                        "<div class='overlay overlay-bg'>  </div>" +
-                        "<a id='" + id + "'href='{{route('detailBook'," + id + ")}}'>" +
-                        "<img style='width: 250px; height: 300px' class='img-fluid' src=''{{$book->imageURL}}' alt=''>" +
+                        "<div class='overlay overlay-bg'></div>" +
+                        "<a id='" + id + "'href='{{route(" + '"detailBook",' + id + ")}}'>" +
+                        "<img style='width: 250px;height: 300px' class='img-fluid' src='' alt=''>" +
                         "</a>" +
                         "</div>" +
                         "<div class='meta d-flex justify-content-between'>" +
@@ -53,21 +31,24 @@ function runScript(e) {
                         "</div>" +
                         "</div>" +
                         "<div class='details'>" +
-                        "<a id=''{{$book->id}}'  href='{{route('detailBook', $book->id)}}'>" +
-                        "<h4>" +
-                        "{{$book->title}}" +
-                        "</h4>" +
+                        "<a id='" + id + "'href='{{route(" + '"detailBook",' + id + ")}}'>" +
+                        "<h4>" + title + "</h4>" +
                         "</a>" +
-                        "<p>" +
-                        "Nhà xuất bản: <a id=''{{$book->publisher_id}}' href='{{route('book', $book->publisher_id)}}'>{{$book->publisherName}}</a>" +
-                        "</p>" +
-                        "<p>" +
-                        "Năm xuất bản: {{$book->publishedYear}}</p> </div> </div>"
+                        "<p>" + "Nhà xuất bản: " + "<a id='" + publisher_id + "'href='{{route(" + '"book",' + publisher_id + ")}}'>" +
+                        "</a>" + "</p>" + "<p>" + "Năm xuất bản:" + publisher_year + "</p> " +
+                        "</div> " +
+                        "</div>"
+                    ;
+
+
+                    output = output + html;
                 }
+                document.getElementById('_list_book').innerHTML = output;
+                console.log(output);
 
             },
             error: function (err) {
-                alert(err.toString());
+
                 console.log("error" + err);
             }
         });
