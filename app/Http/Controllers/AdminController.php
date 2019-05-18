@@ -10,7 +10,7 @@ use App\Models\Genre;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\BookHistory;
-use Illuminate\Support\Facades\DB;
+
 
 
 class AdminController extends Controller
@@ -42,7 +42,7 @@ class AdminController extends Controller
         $data['listP'] = Publisher::all();
         $data['listA'] = Author::all();
         $data['listG'] = Genre::all();
-        $data['listC'] = DB::table('publishers')->join('books', 'publishers.id', '=', 'books.publisher_id')->join('book_images', 'book_images.book_id', '=', 'books.id')->join('images', 'book_images.image_id', '=', 'images.id')->join('book_quantities', 'book_quantities.book_id', '=', 'books.id')->select('books.*', 'images.imageURL', 'publishers.publisherName', 'book_quantities.quantity')->get();
+
         return view('admin.listBook', $data);
 
     }
