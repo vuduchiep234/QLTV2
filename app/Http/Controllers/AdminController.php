@@ -38,7 +38,7 @@ class AdminController extends Controller
 
     public function getListBook(){
 
-        $data['list'] = Book::with('authors')->paginate(10);
+        $data['list'] = Book::with('authors','genres','Publisher','BookQuantity','images')->paginate(10);
         $data['listP'] = Publisher::all();
         $data['listA'] = Author::all();
         $data['listG'] = Genre::all();
