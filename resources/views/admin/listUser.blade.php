@@ -7,40 +7,47 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="">Trang chủ</a>
+                    <a href="">Home</a>
                 </li>
 
                 <li>
-                    <a href="">Quản lý Người dùng</a>
+                    <a href="{{route('listUser')}}">Manage User</a>
                 </li>
-                <li class="active">Danh sách người dùng</li>
+                <li class="active">List User</li>
 
             </ul><!-- /.breadcrumb -->
+            <!-- <div style="margin-left: 700px; margin-top: -55px; margin-right: 0px;">
+
+                    
+                        @include('admin.search')
+                        
+                   
+            </div> -->
 
         </div>
 
-
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><b>Danh sách người dùng</b></h3>
+                <h3 class="box-title text-center"><b>List User</b></h3>
                 <!-- <button class="btn btn-sm btn-success" data-toggle="modal" id="addUser" style="float: right;">
                     <i class=" "></i>
                     Add
 
                 </button> -->
             </div>
+            
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                       <th class="text-center">ID</th>
-                      <th class="text-center">Tên</th>
+                      <th class="text-center">Name</th>
                       <th class="text-center">Email</th>
                       <!-- <th class="text-center">Password</th> -->
-                      <th class="text-center">Vai trò</th>
-                      <th class="text-center">Sửa</th>
-                      <th class="text-center">Xóa</th>
+                      <th class="text-center">Role Type</th>
+                      <th class="text-center">Edit</th>
+                      <th class="text-center">Delete</th>
                     </tr>
                 </thead>
                 <tbody id="body_list_user">
@@ -181,7 +188,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Sửa thông tin Người dùng</h4>
+                    <h3 class="modal-title text-center"><b>Edit User</b></h3>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -222,7 +229,7 @@
 
                             <div class="col-sm-11" style="margin-top: 5px;">
                                 <div class="form-group">
-                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password2" style="margin-top: 5px;">Vai trò:</label>
+                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password2" style="margin-top: 5px;"><b>Role Type:</b></label>
 
                                     <div class="input-group " style="width: 350px;" >
 
@@ -259,9 +266,14 @@
                     <input type="hidden" id="password" value="" />
                     <input type="hidden" id="role_id" value="" />
 
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
-                    <input class="btn btn-info" type="submit" value="Edit" id="_edit-user" >
-
+                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
+                    <input class="btn btn-info" type="submit" value="Edit" id="_edit-user" > -->
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times text-red"></i>Close</button>
+                    <button class="btn btn-info" type="submit" id="_edit-user">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Edit
+                    </button>
                 </div>
             </div>
         <!-- </form> -->
@@ -281,7 +293,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Xác nhận</h4>
+                    <h3 class="modal-title text-center"><b>Confirm</b></h3>
                 </div>
                 <div class="modal-body">
 
@@ -289,7 +301,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
-                            <h4>Bạn có chắc chắn muốn xóa không?</h4>
+                            <h4 class="text-center">You may want to delete ?</h4>
 
                         </div>
                     </div>
@@ -298,8 +310,8 @@
 
                 <div class="modal-footer">
                     <input type="hidden" id="user-delete" value="" />
-                    <button class="btn btn-white btn-round pull-left" data-dismiss="modal">
-                        <i class="ace-icon fa fa-times red2"></i>
+                    <button class="btn btn-default btn-round pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times text-red"></i>
                         No
                     </button>
                     <button class="btn btn-white btn-warning btn-bold" id="_delete-user">

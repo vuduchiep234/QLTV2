@@ -7,9 +7,9 @@
         <ul class="breadcrumb">
             <li>
                 <i class="ace-icon fa fa-home home-icon"></i>
-                <a href="">Trang chủ</a>
+                <a href="">Home</a>
             </li>
-            <li class="active">Nhà xuất bản</li>
+            <li class="active">Publisher</li>
 
         </ul><!-- /.breadcrumb -->
 
@@ -17,10 +17,10 @@
 
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><b>Danh sách Nhà xuất bản</b></h3>
+            <h3 class="box-title"><b>List Publisher</b></h3>
             <button class="btn btn-sm btn-success" data-toggle="modal" id="addPublisher" style="float: right;">
-                <i class=" "></i>
-                Thêm
+                <i class="ace-icon fa fa-plus bigger-110 white "></i>
+                Add
 
             </button>
         </div>
@@ -30,10 +30,10 @@
                 <thead>
                 <tr>
                     <th class="text-center">ID</th>
-                    <th class="text-center">Tên Nhà xuất bản</th>
+                    <th class="text-center">Publisher Name</th>
 
-                    <th class="text-center">Sửa</th>
-                    <th class="text-center">Xóa</th>
+                    <th class="text-center">Edit</th>
+                    <th class="text-center">Delete</th>
                 </tr>
                 </thead>
                 <tbody id="body_list_publisher">
@@ -78,7 +78,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"> Thêm Nhà xuất bản </h4>
+                        <h3 class="modal-title text-center"><b> Add Publisher </b></h3>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -86,7 +86,7 @@
                                 <!-- PAGE CONTENT BEGINS -->
                                 <div class="col-sm-9" >
                                     <div class="form-group" >
-                                        <label class="col-sm-4 control-label no-padding-right" for="form-field-1" style="margin-top: 22px;">Tên:</label>
+                                        <label class="col-sm-4 control-label no-padding-right" for="form-field-1" style="margin-top: 22px;"><b>Publisher Name:</b></label>
 
                                         <div class="col-sm-7" id="form-publisher">
                                             <input type="text" placeholder="Enter input data ..." class="form-control"  name="type-publisher" id="type-publisher" style="width: 350px; margin-top: 15px;"/>
@@ -101,11 +101,13 @@
                     </div>
                     <br/>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
-                        <button class="btn btn-info" type="submit" id="add-publisher">
-                            <i class="ace-icon fa fa-check bigger-110"></i>
-                            Thêm
-                        </button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times text-red"></i>
+                    Close</button>
+                    <button class="btn btn-success" type="submit" id="add-publisher">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Add
+                    </button>
                     </div>
                 </div>
             <!-- </form> -->
@@ -123,7 +125,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"> Sửa thông tin Nhà xuất bản</h4>
+                        <h3 class="modal-title text-center"><b> Edit Publisher</b></h3>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -133,7 +135,7 @@
 
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="form-field-1" style="margin-top:  12px;">Tên: </label>
+                                        <label class="col-sm-4 control-label no-padding-right" for="form-field-1" style="margin-top:  12px;"><b>Publisher Name: </b></label>
 
                                         <div class="col-sm-8">
                                             <input type="text" placeholder="Enter data input ..." class="form-control" name="publisher-type" id="publisher-type" style="width: 350px; margin-top: 5px;" />
@@ -149,11 +151,12 @@
                     <br/>
                     <div class="modal-footer">
                         <input type="hidden" id="publisher-id" name="publisher-id" value="" />
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
-                        <button class="btn btn-info" type="submit" id="edit-publisher">
-                            <i class="ace-icon fa fa-check bigger-110"></i>
-                            Sửa
-                        </button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times text-red"></i>Close</button>
+                    <button class="btn btn-info" type="submit" id="edit-publisher">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Edit
+                    </button>
                     </div>
                 </div>
             <!-- </form> -->
@@ -172,7 +175,7 @@
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Xác nhận</h4>
+                        <h3 class="modal-title text-center"><b>Confirm</b></h3>
                     </div>
                     <div class="modal-body">
 
@@ -180,7 +183,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- PAGE CONTENT BEGINS -->
-                                <h4>Bạn có chắc chắn muốn xóa không?</h4>
+                                <h4 class="text-center">You may want to delete ?</h4>
 
                             </div>
                         </div>
@@ -189,8 +192,8 @@
 
                     <div class="modal-footer">
                         <input type="hidden" id="publisher-delete" value="" />
-                        <button class="btn btn-white btn-round pull-left" data-dismiss="modal">
-                            <i class="ace-icon fa fa-times red2"></i>
+                        <button class="btn btn-default btn-round pull-left" data-dismiss="modal">
+                            <i class="ace-icon fa fa-times text-red"></i>
                             No
                         </button>
                         <button class="btn btn-white btn-warning btn-bold" id="_delete-publisher">
