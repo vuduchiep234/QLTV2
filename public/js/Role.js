@@ -287,4 +287,59 @@ jQuery(function($) {
         });
     }
 
+    $('#search').on('click',function(){
+        // alert(1);
+        var value=$('#data_search').val();
+        // alert(value);
+        $.ajax({
+            type : 'get',
+            url : '/searchRole',
+            data: {'data_search':value},
+            success:function(data){
+                // console.log(data);
+                $('#body_list_role').html(data);
+                $('a[data-type=update-role]').on('click', function(){
+
+
+                    var id = $(this).attr("id_edit_role");
+                    var name = $(this).attr("roleType");
+                    // alert(name);
+
+                    $.ajax({
+
+                        url: '/api/v1/roles/get/'+id,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(data) {
+                            name = data.roleType;
+                            // alert(name);
+                            $('#role-type').val(name);
+                        },
+                        error: function(mess){
+                            alert("Loi gi nay");
+                            console.log(mess);
+                        }
+                    });
+
+                    // $('#role-type').val(name);
+                    $('#role-id').val(id);
+                    $('#editModal-role').modal('show');
+                });
+
+                $('a[data-type=delete-role]').on('click', function(){
+
+                    var id = $(this).attr("id_delete_role");
+
+                    $('#role-delete').val(id);
+                    $('#deleteModal-role').modal('show');
+
+                });
+            },
+            error: function(err){
+                alert("fail");
+                console.log(err);
+            }
+        });
+    });
+
 });

@@ -116,5 +116,18 @@ Route::get('detailBook/{id}',
  	['as'=>'detailBook', 'uses'=>'UserController@getBookDetail']
 );
 
+Route::get('/searchRole','AdminController@searchRole');
 
+Route::get('/searchUser','AdminController@searchUser');
 
+Route::get('/searchAuthor','AdminController@searchAuthor');
+
+Route::get('/searchGenre','AdminController@searchGenre');
+
+Route::get('/searchBook','AdminController@searchBook');
+
+Route::get('/searchRentBook','AdminController@searchRentBook');
+
+Route::get('/searchReturnBook','AdminController@searchReturnBook');
+
+Route::get('/searchBookHistory','AdminController@searchBookHistory');

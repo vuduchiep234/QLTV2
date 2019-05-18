@@ -275,6 +275,52 @@ jQuery(function($) {
         });
     }
 
+    $('#search').on('click',function(){
+        // alert(1);
+        var value=$('#data_search').val();
+        // alert(value);
+        $.ajax({
+            type : 'get',
+            url : '/searchUser',
+            data: {'data_search':value},
+            success:function(data){
+                // console.log(data);
+                $('#body_list_user').html(data);
+                $('a[data-type=update-user]').on('click', function(){
+
+                    var id = $(this).attr("id_edit_user");
+                    var name = $(this).attr("name");
+                    var email = $(this).attr("email");
+                    var password = $(this).attr("password");
+                    var role_id = $(this).attr("role_id");
+                    var role = $(this).attr("role");
+
+
+                    $('#user_id_').val(id);
+                    $('#user_name').val(name);
+                    $('#user_email').val(email);
+                    $('#user_password').val(password);
+                    $('#user_role_id').val(id);
+                    $('#user_role').val(role);
+                    $('#editModal-user').modal('show');
+                });
+
+                $('a[data-type=delete-user]').on('click', function(){
+
+                    var id = $(this).attr("id_delete_user");
+
+                    $('#user-delete').val(id);
+                    $('#deleteModal-user').modal('show');
+
+                });
+            },
+            error: function(err){
+                alert("fail");
+                console.log(err);
+            }
+        });
+    });
+
     // $('#addUser').click(function(){
 
 
