@@ -31,4 +31,6 @@ interface Service
     public function getBetween($needle, $from, $to, array $relations = []);
 
     public function getBy(array $pairs, array  $relations = []);
+
+    public function paginated(array $attributes);
 }

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('a');
 });
 
 Route::get('homeAdmin',
@@ -116,7 +116,14 @@ Route::get('detailBook/{id}',
  	['as'=>'detailBook', 'uses'=>'UserController@getBookDetail']
 );
 
+
+Route::get('paginatedBooks',
+    ['as'=>'paginatedBooks', 'uses'=>'UserController@getBookPaginatedView']
+);
+
+
 Route::get('/searchRole','AdminController@searchRole');
+
 
 Route::get('/searchUser','AdminController@searchUser');
 

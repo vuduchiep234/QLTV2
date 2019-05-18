@@ -13,10 +13,11 @@ use App\Models\BookHistory;
 use DB;
 
 
+
 class AdminController extends Controller
 {
     //
-    
+
     public function getHome(){
     	return view('admin.home');
     }
@@ -25,7 +26,7 @@ class AdminController extends Controller
 
         $data['list'] = Role::paginate(2);
         return view('admin.listRole', $data);
-    	
+
     }
 
     public function getListUser(){
@@ -33,17 +34,18 @@ class AdminController extends Controller
         $data['list'] = User::paginate(2);
         $data['listR'] = Role::all();
         return view('admin.listUser', $data);
-    	
+
     }
 
     public function getListBook(){
 
-        $data['list'] = Book::paginate(10);
+        $data['list'] = Book::with('authors','genres','Publisher','BookQuantity','images')->paginate(10);
         $data['listP'] = Publisher::all();
         $data['listA'] = Author::all();
         $data['listG'] = Genre::all();
+
         return view('admin.listBook', $data);
-        
+
     }
 
     public function getListBookQuantity(){
@@ -59,14 +61,14 @@ class AdminController extends Controller
     }
 
     public function getListPublisher(){
-        
-        $data['list'] = Publisher::paginate(2);
+
+        $data['list'] = Publisher::paginate(10);
         return view('admin.listPublisher', $data);
-    	
+
     }
 
     public function getListAuthor(){
-        $data['list'] = Author::paginate(2);
+        $data['list'] = Author::paginate(10);
         return view('admin.listAuthor', $data);
     }
 
@@ -74,7 +76,7 @@ class AdminController extends Controller
 
         $data['list'] = Genre::paginate(2);
         return view('admin.listGenre', $data);
-    	
+
     }
 
     public function getListImage(){
@@ -98,19 +100,19 @@ class AdminController extends Controller
         // $data['list'] = BookHistory::paginate(10);
         DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copy_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear')->paginate(2);
         return view('admin.listBookHistory', $data);
-    	
+
     }
 
     public function getListRentBook(){
 
         return view('admin.listRentBook');
-        
+
     }
 
     public function getListReturnBook(){
 
         return view('admin.listReturnBook');
-        
+
     }
 
     public function searchRole(Request $request){

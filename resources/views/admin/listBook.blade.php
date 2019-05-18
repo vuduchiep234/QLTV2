@@ -53,19 +53,53 @@
                 </thead>
 
                 <tbody id="body_list_book">
-                    <!-- @foreach($list as $book)
+
+                    @foreach($list as $book)
 
                         <tr>
                             <td class="text-center">{{$book->id}}</td>
                             <td class="text-center">{{$book->title}}</td>
-                            <td class="text-center">{{$book->publisher_id}}</td>
-                            <td class="text-center">{{$book->publishedYear}}</td>
+                            <td class="text-center">
+                                @foreach($book->authors as $authors)
+                                    <?php echo $authors->name?>
+                                @endforeach</td>
 
                             <td class="text-center">
-                                <a href="#" class="text-blue" id="<?php echo $book->id; ?>" title="{{$book->title}}" publisher_id="{{$book->publisher_id}}" publishedYear="{{$book->publishedYear}}"  data-type="update-book" data-toggle="modal">
+                                @foreach($book->genres as $genres)
+                                    <?php echo $genres->genreType?>
+                                @endforeach</td>
+
+                            <td class="text-center">{{$book->Publisher->publisherName}}</td>
+                            <td class="text-center">{{$book->publishedYear}}</td>
+                            <td class="text-center">{{$book->BookQuantity->quantity}}</td>
+
+                            <td class="text-center">
+                                <a href="#" class="text-yellow" id="<?php echo $book->id; ?>" title="{{$book->title}}" publisher_id="{{$book->publisher_id}}" publishedYear="{{$book->publishedYear}}"  data-type="import-book" data-toggle="modal">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
+                            <?php
+
+                            if (empty (end($book->images))){
+
+                                echo "<td class='text-center'>"
+                                    ."<a href='#' class='text-blue'  data-toggle='modal' id_edit_book=".$book->id." data-type='update-book' title=".$book->title." publisher_id=".$book->publisher_id." author_id=".'1'." genre_id="." publishedYear=".$book->publishedYear." image=".">"
+                                    ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                                    ."</a>"
+                                    ."</td>";
+
+
+                            }else{
+
+                                echo "<td class='text-center'>"
+                                    ."<a href='#' class='text-blue'  data-toggle='modal' id_edit_book=".$book->id." data-type='update-book' title=".$book->title." publisher_id=".$book->publisher_id." author_id=".'1'." genre_id="." publishedYear=".$book->publishedYear." image=".($book->images[0])->imageURL.">"
+                                    ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                                    ."</a>"
+                                    ."</td>";
+                            }
+                            ?>
+
+
 
                             <td class="text-center">
                                 <a class="text-red" href="#" id="<?php echo $book->id; ?>" data-type="delete-book" data-toggle="modal">
@@ -75,13 +109,15 @@
                             </td>
                         </tr>
 
-                    @endforeach -->
+                    @endforeach
 
                 </tbody>
               </table>
             </div>
             <!-- /.box-body -->
         </div>
+
+    <div style="margin-left: 0px;">{!! $list->links() !!}</div>
         <!-- /.box -->
 </div>
     <!-- /.content -->
@@ -438,7 +474,6 @@
 
     </div>
 </div>
-
 
 <div class="modal fade" id="deleteModal-book" book="dialog">
             <div class="modal-dialog">
