@@ -7,11 +7,11 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="">Trang chủ</a>
+                    <a href="">Home</a>
                 </li>
 
                 
-                <li class="active">Lịch sử của Sách</li>
+                <li class="active">Book History</li>
 
             </ul><!-- /.breadcrumb -->
 
@@ -20,7 +20,7 @@
         
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><b>Danh sách Lịch sử của Sách</b></h3>
+                <h3 class="box-title"><b>List Book History</b></h3>
                 <!-- <button class="btn btn-sm btn-success" data-toggle="modal" id="addhistoryBook" style="float: right;">
                     <i class=" "></i>
                     Add
@@ -33,33 +33,37 @@
                 <thead>
                   <tr>
                     <th class="text-center">ID</th>
-                    <th class="text-center">Sách bản sao</th>
+                    <!-- <th class="text-center">ID Book Copy</th> -->
                     <!-- <th class="text-center">Book Title</th> -->
-                    <th class="text-center">Người dùng</th>
-                    <th class="text-center">Họ và tên</th>
-                    <th class="text-center">Chi tiết</th>
+                    <th class="text-center">ID User</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">ID Book</th>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Detail</th>
                     <!-- <th class="text-center">Rent</th> -->
                     <!-- <th class="text-center">Return</th> -->
                     <!-- <th class="text-center">State</th> -->
-                    <th class="text-center">Xóa</th>
+                    <th class="text-center">Delete</th>
                   </tr>
                 </thead>
                 <tbody id="body_book_history">
             
-                  <!-- @foreach($list as $history)
+                  @foreach($list as $history)
 
                         <tr>
                             <td class="text-center">{{$history->id}}</td>
-                            <td class="text-center">{{$history->book_copies_id}}</td>
                             <td class="text-center">{{$history->user_id}}</td>
+                            <td class="text-center">{{$history->name}}</td>
+                            <td class="text-center">{{$history->book_id}}</td>
+                            <td class="text-center">{{$history->title}}</td>
                             <td class="text-center">
-                                <a href="#" class="text-yellow" id="<?php echo $history->id; ?>" book_copies_id="{{$history->book_copies_id}}" user_id="{{$history->user_id}}" data-type="active-history" data-toggle="modal">
+                                <a href="#" class="text-yellow" id_active_history="<?php echo $history->id; ?>" book_copies_id="{{$history->book_copies_id}}" user_id="{{$history->user_id}}" name="{{$history->name}}" book_id="{{$history->book_id}}" title="{{$history->title}}" data-type="detail_history" data-toggle="modal">
                                     <i class="ace-icon fa fa-eye bigger-130"></i>
                                 </a>
                             </td>
                             
                             <td class="text-center">
-                                <a class="text-blue" href="#" id="<?php echo $history->id; ?>" data-type="delete-history" data-toggle="modal">
+                                <a class="text-blue" href="#" id_delete_history="<?php echo $history->id; ?>" data-type="delete-history" data-toggle="modal">
                                     <i class="ace-icon fa fa-hourglass-1 bigger-130"></i>
                                 </a>
 
@@ -72,7 +76,7 @@
                             </td>
                         </tr>
 
-                    @endforeach -->
+                    @endforeach
                     
                 </tbody>
                 
@@ -99,7 +103,7 @@
         
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Xác nhận</h4>
+                    <h3 class="modal-title text-centere"><b>Confirm</b></h3>
                 </div>
                 <div class="modal-body">
                     
@@ -107,7 +111,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
-                            <h4>Bạn có chắc chắn muốn xóa không?</h4>
+                            <h4 class="text-center">You may want to delete ?</h4>
 
                         </div>
                     </div>
@@ -116,8 +120,8 @@
                 
                 <div class="modal-footer">
                     <input type="hidden" id="id_book_history" value="" />
-                    <button class="btn btn-white btn-round pull-left" data-dismiss="modal">
-                        <i class="ace-icon fa fa-times red2"></i>
+                    <button class="btn btn-default btn-round pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times text-red"></i>
                         No
                     </button>
                     <button class="btn btn-white btn-warning btn-bold" id="delete_book_history">
@@ -273,7 +277,7 @@
             <div class="modal-content" id="body_detail">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title center" id="detail_title">Danh sách Sách</h4>
+                    <h3 class="modal-title " id="detail_title"><b>Book</b></h3>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -286,10 +290,10 @@
                                     <table id="simple-table" class="table  table-bordered table-hover" style="margin-left:65px">
                                         <thead>
                                             <tr>
-                                                <th class="center">Sách bản sao</th>
-                                                <th class="center">Sách</th>
-                                                <th class="center">Tên sách</th>
-                                                <th class="center">Năm xuất bản</th>
+                                                <th class="center">ID Book Copy</th>
+                                                <th class="center">ID Book</th>
+                                                <th class="center">Title</th>
+                                                <th class="center">Published Year</th>
                                                 <!-- <th class="center">State</th> -->
                                             </tr>
                                         </thead>

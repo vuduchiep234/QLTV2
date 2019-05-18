@@ -95,7 +95,8 @@ class AdminController extends Controller
 
     public function getListBookHistory(){
 
-        $data['list'] = BookHistory::paginate(10);
+        // $data['list'] = BookHistory::paginate(10);
+        DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copy_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear')->paginate(2);
         return view('admin.listBookHistory', $data);
     	
     }
@@ -167,6 +168,47 @@ class AdminController extends Controller
                             
                             ."<td class='text-center'>"
                                 ."<a class='text-red' href='#'' id_delete_user='$data->id' data-type='delete-user' data-toggle='modal'>"
+                                    ."<i class='ace-icon fa fa-trash-o bigger-130'></i>"
+                                ."</a>"
+
+                            ."</td>"
+                        ."</tr>";
+                }
+                return Response($result);
+            }
+        }
+    }
+
+    public function searchBookHistory(Request $request){
+        if($request->ajax()){
+
+            $result="";
+
+            $history = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copy_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear')
+            ->where('users.name','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.user_id','LIKE','%'.$request->data_search.'%')
+            ->orWhere('books.title','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.id','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.book_copy_id','LIKE','%'.$request->data_search.'%')->get();
+            if($history){
+                foreach ($history as  $key => $data) {
+                    $result .= 
+
+                            "<tr row_id_user='$data->id'>"
+                            ."<td class='text-center'>$data->id</td>"
+                            // ."<td class='text-center'>$data->book_copy_id</td>"
+                            ."<td class='text-center'>$data->user_id</td>"
+                            ."<td class='text-center'>$data->name</td>"
+                            ."<td class='text-center'>$data->book_id</td>"
+                            ."<td class='text-center'>$data->title</td>"
+                            ."<td class='text-center'>"
+                                ."<a href='#'' class='text-yellow' id_edit_history='$data->id' user_id='$data->user_id' name='$data->name' book_id='$data->book_id' title='$data->title' data-type='detail_history' data-toggle='modal'>"
+                                    ."<i class='ace-icon fa fa-eye bigger-130'></i>"
+                                ."</a>"
+                            ."</td>"
+                            
+                            ."<td class='text-center'>"
+                                ."<a class='text-red' href='#'' id_delete_history='$data->id' data-type='delete-history' data-toggle='modal'>"
                                     ."<i class='ace-icon fa fa-trash-o bigger-130'></i>"
                                 ."</a>"
 

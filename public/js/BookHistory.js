@@ -390,6 +390,26 @@ jQuery(function($) {
 		});
 	});
 
+	$('#search').on('click',function(){
+        // alert(1);
+        var value=$('#data_search').val();
+        // alert(value);
+        $.ajax({
+            type : 'get',
+            url : '/searchBookHistory',
+            data: {'data_search':value},
+            success:function(data){
+                // console.log(data);
+                $('#body_book_history').html(data);
+                
+            },
+            error: function(err){
+                alert("fail");
+                console.log(err);
+            }
+        });
+    });
+
 	// $('#rent_id').click(function(){
 	// 	var user_id = $('#rent_user_id').val();
 	// 	var book_copy_id = $('#rent_bookCopy_id').val();

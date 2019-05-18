@@ -269,4 +269,24 @@ jQuery(function($) {
 		});
 	});
 
+	$('#search').on('click',function(){
+	        // alert(1);
+	        var value=$('#data_search').val();
+	        // alert(value);
+	        $.ajax({
+	            type : 'get',
+	            url : '/searchRentBook',
+	            data: {'data_search':value},
+	            success:function(data){
+	                // console.log(data);
+	                $('#body_rent_book').html(data);
+	                
+	            },
+	            error: function(err){
+	                alert("fail");
+	                console.log(err);
+	            }
+	        });
+	    });
+
 });
