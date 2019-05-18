@@ -90,4 +90,9 @@ class EloquentDecorator implements Decorator, Message
         $message = $this->service;
         return $message->getMessage();
     }
+
+    public function paginated(array $attributes)
+    {
+        return $this->service->paginated($attributes);
+    }
 }

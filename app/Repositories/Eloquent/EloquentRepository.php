@@ -110,4 +110,13 @@ class EloquentRepository implements Repository
     {
         return $this->model;
     }
+
+    public function paginate(array $attributes)
+    {
+        $limit = isset($attributes['limit']) ? $attributes['limit'] : 20;
+        $relations = isset($attributes['relations']) ? $attributes['relations'] : [];
+        $order = isset($attributes['order']) ? $attributes['order'] : 'asc';
+        $sort = isset($attributes['sort']) ? $attributes['sort'] : 'id';
+        return $this->newQuery()->with($relations)->orderBy($sort, $order)->paginate($limit);
+    }
 }

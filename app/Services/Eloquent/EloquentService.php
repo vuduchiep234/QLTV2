@@ -138,4 +138,9 @@ class EloquentService implements Service, Message
         }
         return $conditions;
     }
+
+    public function paginated(array $attributes)
+    {
+        return $this->repository->paginate($attributes);
+    }
 }

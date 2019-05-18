@@ -10,12 +10,13 @@ use App\Models\Genre;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\BookHistory;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
 {
     //
-    
+
     public function getHome(){
     	return view('admin.home');
     }
@@ -24,7 +25,7 @@ class AdminController extends Controller
 
         $data['list'] = Role::paginate(2);
         return view('admin.listRole', $data);
-    	
+
     }
 
     public function getListUser(){
@@ -32,17 +33,18 @@ class AdminController extends Controller
         $data['list'] = User::paginate(2);
         $data['listR'] = Role::all();
         return view('admin.listUser', $data);
-    	
+
     }
 
     public function getListBook(){
 
-        $data['list'] = Book::paginate(10);
+        $data['list'] = Book::with('authors')->paginate(10);
         $data['listP'] = Publisher::all();
         $data['listA'] = Author::all();
         $data['listG'] = Genre::all();
+        $data['listC'] = DB::table('publishers')->join('books', 'publishers.id', '=', 'books.publisher_id')->join('book_images', 'book_images.book_id', '=', 'books.id')->join('images', 'book_images.image_id', '=', 'images.id')->join('book_quantities', 'book_quantities.book_id', '=', 'books.id')->select('books.*', 'images.imageURL', 'publishers.publisherName', 'book_quantities.quantity')->get();
         return view('admin.listBook', $data);
-        
+
     }
 
     public function getListBookQuantity(){
@@ -58,14 +60,14 @@ class AdminController extends Controller
     }
 
     public function getListPublisher(){
-        
+
         $data['list'] = Publisher::paginate(10);
         return view('admin.listPublisher', $data);
-    	
+
     }
 
     public function getListAuthor(){
-        $data['list'] = Author::paginate(2);
+        $data['list'] = Author::paginate(10);
         return view('admin.listAuthor', $data);
     }
 
@@ -73,7 +75,7 @@ class AdminController extends Controller
 
         $data['list'] = Genre::paginate(10);
         return view('admin.listGenre', $data);
-    	
+
     }
 
     public function getListImage(){
@@ -96,19 +98,19 @@ class AdminController extends Controller
 
         $data['list'] = BookHistory::paginate(10);
         return view('admin.listBookHistory', $data);
-    	
+
     }
 
     public function getListRentBook(){
 
         return view('admin.listRentBook');
-        
+
     }
 
     public function getListReturnBook(){
 
         return view('admin.listReturnBook');
-        
+
     }
 
 }

@@ -116,5 +116,9 @@ Route::get('detailBook/{id}',
  	['as'=>'detailBook', 'uses'=>'UserController@getBookDetail']
 );
 
+Route::get('paginatedBooks',
+    ['as'=>'paginatedBooks', 'uses'=>'UserController@getBookPaginatedView']
+);
+
 
 

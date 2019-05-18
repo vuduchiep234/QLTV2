@@ -37,4 +37,6 @@ interface Repository
     public function getBetween($needle, array $duration, array $relations = []);
 
     public function getBy(array $conditions, array $relations = []);
+
+    public function paginate(array $attributes);
 }
