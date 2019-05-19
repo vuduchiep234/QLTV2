@@ -74,16 +74,36 @@
                             <td class="text-center">{{$book->BookQuantity->quantity}}</td>
 
                             <td class="text-center">
-                                <a href="#" class="text-yellow" id="<?php echo $book->id; ?>" title="{{$book->title}}" publisher_id="{{$book->publisher_id}}" publishedYear="{{$book->publishedYear}}"  data-type="import-book" data-toggle="modal">
+                                <a href="#" class="text-yellow" id="<?php echo $book->id; ?>" id_edit_book={{$book->id}} title="{{$book->title}}" publisher_id="{{$book->publisher_id}}" publishedYear="{{$book->publishedYear}}"  data-type="import-book" data-toggle="modal">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
                             <?php
+                            $genres=$book->genres;
+                            $authors=$book->authors;
+                            $genresID="";
+                            $authorsID="";
+                            for ($i=0;$i<count($genres);$i++){
+                                if ($i==0){
+                                    $genresID=$genres[$i]->id;
+                                }else{
+                                    $genresID=$genresID.",".$genres[$i]->id;
+                                }
 
+                            }
+                            for ($i=0;$i<count($authors);$i++){
+                                if ($i==0){
+                                    $authorsID=$authors[$i]->id;
+                                }else{
+                                    $authorsID=$authorsID.",".$authors[$i]->id;
+                                }
+
+                            }
+                            echo $authorsID;
                             if (empty (end($book->images))){
 
                                 echo "<td class='text-center'>"
-                                    ."<a href='#' class='text-blue'  data-toggle='modal' id_edit_book=".$book->id." data-type='update-book' title=".$book->title." publisher_id=".$book->publisher_id." author_id=".'1'." genre_id="." publishedYear=".$book->publishedYear." image=".">"
+                                    ."<a href='#' class='text-blue' id='id_edit_book' data-toggle='modal' id_edit_book=".$book->id." data-type='update-book' title=".$book->title." publisher_id=".$book->publisher_id." author_id=".$authorsID." genre_id=".$genresID." publishedYear=".$book->publishedYear." image=".">"
                                     ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
                                     ."</a>"
                                     ."</td>";
@@ -92,7 +112,7 @@
                             }else{
 
                                 echo "<td class='text-center'>"
-                                    ."<a href='#' class='text-blue'  data-toggle='modal' id_edit_book=".$book->id." data-type='update-book' title=".$book->title." publisher_id=".$book->publisher_id." author_id=".'1'." genre_id="." publishedYear=".$book->publishedYear." image=".($book->images[0])->imageURL.">"
+                                    ."<a href='#' class='text-blue' id='id_edit_book'  data-toggle='modal' id_edit_book=".$book->id." data-type='update-book' title=".$book->title." publisher_id=".$book->publisher_id." author_id=".$authorsID." genre_id=".$genresID." publishedYear=".$book->publishedYear." image=".($book->images[0])->imageURL.">"
                                     ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
                                     ."</a>"
                                     ."</td>";
@@ -530,7 +550,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title text-center"><b> Import Book </b></h4>
+                    <h4 class="modal-title text-center"><b> Import Book </b></h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
