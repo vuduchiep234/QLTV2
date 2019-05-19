@@ -33,7 +33,7 @@
                 <thead>
                   <tr>
                     <th class="text-center">ID</th>
-                    <!-- <th class="text-center">ID Book Copy</th> -->
+                    <th class="text-center">ID Book Copy</th>
                     <!-- <th class="text-center">Book Title</th> -->
                     <th class="text-center">ID User</th>
                     <th class="text-center">Name</th>
@@ -52,6 +52,7 @@
 
                         <tr>
                             <td class="text-center">{{$history->id}}</td>
+                            <td class="text-center">{{$history->book_copies_id}}</td>
                             <td class="text-center">{{$history->user_id}}</td>
                             <td class="text-center">{{$history->name}}</td>
                             <td class="text-center">{{$history->book_id}}</td>
@@ -63,17 +64,17 @@
                             </td>
                             
                             <td class="text-center">
-                                <a class="text-blue" href="#" id_delete_history="<?php echo $history->id; ?>" data-type="delete-history" data-toggle="modal">
-                                    <i class="ace-icon fa fa-hourglass-1 bigger-130"></i>
+                                <a class="text-red" href="#" id_delete_history="<?php echo $history->id; ?>" data-type="delete-history" data-toggle="modal">
+                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 </a>
 
                             </td>
-                            <td class="text-center">
+                            <!-- <td class="text-center">
                                 <a class="text-green" href="#" id="<?php echo $history->id; ?>" data-type="delete-history" data-toggle="modal">
                                     <i class="ace-icon fa fa-hourglass-end bigger-130"></i>
                                 </a>
 
-                            </td>
+                            </td> -->
                         </tr>
 
                     @endforeach
@@ -81,6 +82,7 @@
                 </tbody>
                 
               </table>
+              <div style="margin-left: 0px;">{!! $list->links() !!}</div>
             </div>
             <!-- /.box-body -->
         </div>

@@ -140,6 +140,57 @@ jQuery(function($) {
     	
 		
 	});
+
+    $('#search').on('click',function(){
+        // alert(1);
+        var value=$('#data_search').val();
+        // alert(value);
+        $.ajax({
+            type : 'get',
+            url : '/searchPublisher',
+            data: {'data_search':value},
+            success:function(data){
+                // console.log(data);
+                $('#body_list_publisher').html(data);
+                
+                $('a[data-type=update-publisher]').on('click', function(){
+
+
+                    var id = $(this).attr("id_edit_publisher");
+                    var name = $(this).attr("name");
+                    $.ajax({
+
+                        url: '/api/v1/publishers/get/'+id,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(data) {
+                            name = data.publisherName;
+                            $('#publisher-type').val(name);
+                        },
+                        error: function(mess){
+                            alert("Loi gi nay");
+                            console.log(mess);
+                        }
+                    });
+                    $('#publisher-id').val(id);
+                    $('#editModal-publisher').modal('show');
+                });
+
+                $('a[data-type=delete-publisher]').on('click', function(){
+
+                    var id = $(this).attr("id_delete_publisher");
+
+                    $('#publisher-delete').val(id);
+                    $('#deleteModal-publisher').modal('show');
+                });
+            },
+            error: function(err){
+                alert("fail");
+                console.log(err);
+            }
+        });
+    });
+
     function Load_data_Pulisher() {
         $.ajax({
 

@@ -132,6 +132,63 @@ jQuery(function($) {
     	
 		
 	});
+
+    $('#search').on('click',function(){
+        // alert(1);
+        var value=$('#data_search').val();
+        // alert(value);
+        $.ajax({
+            type : 'get',
+            url : '/searchGenre',
+            data: {'data_search':value},
+            success:function(data){
+                // console.log(data);
+                $('#body_list_genre').html(data);
+                
+                $('a[data-type=update-genre]').on('click', function(){
+
+
+                    var id = $(this).attr("id_edit_genre");
+                    var name = $(this).attr("name");
+
+                    $.ajax({
+
+                        url: '/api/v1/genres/get/'+id,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(data) {
+                            name = data.genreType;
+                            // alert(name);
+                            $('#genre-type').val(name);
+                        },
+                        error: function(mess){
+                            alert("Loi gi nay");
+                            console.log(mess);
+                        }
+                    });
+
+
+                    $('#genre-id').val(id);
+                    $('#editModal-genre').modal('show');
+                });
+
+                $('a[data-type=delete-genre]').on('click', function(){
+
+                    var id = $(this).attr("id_delete_genre");
+                    // alert(id);
+
+                    $('#genre-delete').val(id);
+                    $('#deleteModal-genre').modal('show');
+
+                });
+            },
+            error: function(err){
+                alert("fail");
+                console.log(err);
+            }
+        });
+    });
+
     function load_data_genre() {
         $.ajax({
 
@@ -193,7 +250,7 @@ jQuery(function($) {
                 $('a[data-type=delete-genre]').on('click', function(){
 
                     var id = $(this).attr("id_delete_genre");
-                    alert(id);
+                    // alert(id);
 
                     $('#genre-delete').val(id);
                     $('#deleteModal-genre').modal('show');
@@ -267,7 +324,7 @@ jQuery(function($) {
                 $('a[data-type=delete-genre]').on('click', function(){
 
                     var id = $(this).attr("id_delete_genre");
-                    alert(id);
+                    // alert(id);
 
                     $('#genre-delete').val(id);
                     $('#deleteModal-genre').modal('show');

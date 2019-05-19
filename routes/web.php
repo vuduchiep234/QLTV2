@@ -124,6 +124,7 @@ Route::get('paginatedBooks',
 
 Route::get('/searchRole','AdminController@searchRole');
 
+Route::get('/searchPublisher','AdminController@searchPublisher');
 
 Route::get('/searchUser','AdminController@searchUser');
 

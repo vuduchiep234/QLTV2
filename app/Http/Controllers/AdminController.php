@@ -24,14 +24,14 @@ class AdminController extends Controller
 
     public function getListRole(){
 
-        $data['list'] = Role::paginate(2);
+        $data['list'] = Role::paginate(10);
         return view('admin.listRole', $data);
 
     }
 
     public function getListUser(){
 
-        $data['list'] = User::paginate(2);
+        $data['list'] = User::paginate(10);
         $data['listR'] = Role::all();
         return view('admin.listUser', $data);
 
@@ -48,18 +48,6 @@ class AdminController extends Controller
 
     }
 
-    public function getListBookQuantity(){
-    	return view('admin.listBookQuantity');
-    }
-
-    public function getListAuthorBook(){
-    	return view('admin.listAuthorBook');
-    }
-
-    public function getListBookGenre(){
-    	return view('admin.listBookGenre');
-    }
-
     public function getListPublisher(){
 
         $data['list'] = Publisher::paginate(10);
@@ -74,44 +62,35 @@ class AdminController extends Controller
 
     public function getListGenre(){
 
-        $data['list'] = Genre::paginate(2);
+        $data['list'] = Genre::paginate(10);
         return view('admin.listGenre', $data);
 
     }
 
-    public function getListImage(){
-    	return view('admin.listImage');
-    }
-
-    public function getListImageUser(){
-    	return view('admin.listImageUser');
-    }
-
-    public function getListBookImage(){
-    	return view('admin.listBookImage');
-    }
-
-    public function getListBookCopy(){
-    	return view('admin.listBookCopy');
-    }
 
     public function getListBookHistory(){
 
         // $data['list'] = BookHistory::paginate(10);
-        DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copy_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear')->paginate(2);
+        $data['list'] = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copies_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear', 'books.id as book_id')->where('book_histories.state', 0)->paginate(10);
         return view('admin.listBookHistory', $data);
 
     }
 
     public function getListRentBook(){
 
-        return view('admin.listRentBook');
+        $data['list'] = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copies_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear', 'books.id as book_id', 'book_copies.state_detail')->where('book_histories.state', 1)->where('book_copies.state_detail', 'borrowed')->paginate(10);
+        return view('admin.listRentBook', $data);
+
+        // return view('admin.listRentBook');
 
     }
 
     public function getListReturnBook(){
 
-        return view('admin.listReturnBook');
+        $data['list'] = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copies_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear', 'books.id as book_id', 'book_copies.state_detail')->where('book_histories.state', 1)->where('book_copies.state_detail', 'rented')->paginate(10);
+        return view('admin.listReturnBook', $data);
+
+        // return view('admin.listReturnBook');
 
     }
 
@@ -181,30 +160,114 @@ class AdminController extends Controller
         }
     }
 
+    public function searchAuthor(Request $request){
+        if($request->ajax()){
+
+            $result="";
+
+            $author = Author::where('name','LIKE','%'.$request->data_search.'%')->orWhere('id','LIKE','%'.$request->data_search.'%')->get();
+            if($author){
+                foreach ($author as  $key => $data) {
+                    $result .= "<tr row_id_author='$data->id'>".
+                                "<td class='text-center'>".$data->id."</td>".
+                                "<td class='text-center'>".$data->name."</td>".
+                                "<td class='text-center'>"
+                                        ."<a href='#' class='text-blue' data-toggle='modal' id_edit_author=".$data->id." data-type='update-author' name=".$data->name.">"
+                                            ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                                        ."</a>"
+                                    ."</td>"
+                                    ."<td class='text-center'>"
+                                        ."<a href='#' class='text-red delete_role' id_delete_author=".$data->id." data-type='delete-author' data-toggle='modal'>"
+                                            ."<i class='ace-icon fa fa-trash-o bigger-130'></i>"
+                                        ."</a>"
+                                    ."</td>"
+                            ."</tr>";
+                }
+                return Response($result);
+            }
+        }
+    }
+
+    public function searchGenre(Request $request){
+        if($request->ajax()){
+
+            $result="";
+
+            $genre = Genre::where('genreType','LIKE','%'.$request->data_search.'%')->orWhere('id','LIKE','%'.$request->data_search.'%')->get();
+            if($genre){
+                foreach ($genre as  $key => $data) {
+                    $result .= "<tr row_id_genre='$data->id'>".
+                                "<td class='text-center'>".$data->id."</td>".
+                                "<td class='text-center'>".$data->genreType."</td>".
+                                "<td class='text-center'>"
+                                        ."<a href='#' class='text-blue' data-toggle='modal' id_edit_genre=".$data->id." data-type='update-genre' name=".$data->genreType.">"
+                                            ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                                        ."</a>"
+                                    ."</td>"
+                                    ."<td class='text-center'>"
+                                        ."<a href='#' class='text-red delete_role' id_delete_genre=".$data->id." data-type='delete-genre' data-toggle='modal'>"
+                                            ."<i class='ace-icon fa fa-trash-o bigger-130'></i>"
+                                        ."</a>"
+                                    ."</td>"
+                            ."</tr>";
+                }
+                return Response($result);
+            }
+        }
+    }
+
+    public function searchPublisher(Request $request){
+        if($request->ajax()){
+
+            $result="";
+
+            $publisher = Publisher::where('publisherName','LIKE','%'.$request->data_search.'%')->orWhere('id','LIKE','%'.$request->data_search.'%')->get();
+            if($publisher){
+                foreach ($publisher as  $key => $data) {
+                    $result .= "<tr row_id_publisher='$data->id'>".
+                                "<td class='text-center'>".$data->id."</td>".
+                                "<td class='text-center'>".$data->publisherName."</td>".
+                                "<td class='text-center'>"
+                                        ."<a href='#' class='text-blue' data-toggle='modal' id_edit_publisher=".$data->id." data-type='update-publisher' name=".$data->publisherName.">"
+                                            ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                                        ."</a>"
+                                    ."</td>"
+                                    ."<td class='text-center'>"
+                                        ."<a href='#' class='text-red delete_role' id_delete_publisher=".$data->id." data-type='delete-publisher' data-toggle='modal'>"
+                                            ."<i class='ace-icon fa fa-trash-o bigger-130'></i>"
+                                        ."</a>"
+                                    ."</td>"
+                            ."</tr>";
+                }
+                return Response($result);
+            }
+        }
+    }
+
     public function searchBookHistory(Request $request){
         if($request->ajax()){
 
             $result="";
 
-            $history = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copy_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear')
+            $history = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copies_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear', 'books.id as book_id')->where('book_histories.state', 0)
             ->where('users.name','LIKE','%'.$request->data_search.'%')
             ->orWhere('book_histories.user_id','LIKE','%'.$request->data_search.'%')
             ->orWhere('books.title','LIKE','%'.$request->data_search.'%')
             ->orWhere('book_histories.id','LIKE','%'.$request->data_search.'%')
-            ->orWhere('book_histories.book_copy_id','LIKE','%'.$request->data_search.'%')->get();
+            ->orWhere('book_histories.book_copies_id','LIKE','%'.$request->data_search.'%')->get();
             if($history){
                 foreach ($history as  $key => $data) {
                     $result .= 
 
                             "<tr row_id_user='$data->id'>"
                             ."<td class='text-center'>$data->id</td>"
-                            // ."<td class='text-center'>$data->book_copy_id</td>"
+                            ."<td class='text-center'>$data->book_copies_id</td>"
                             ."<td class='text-center'>$data->user_id</td>"
                             ."<td class='text-center'>$data->name</td>"
                             ."<td class='text-center'>$data->book_id</td>"
                             ."<td class='text-center'>$data->title</td>"
                             ."<td class='text-center'>"
-                                ."<a href='#'' class='text-yellow' id_edit_history='$data->id' user_id='$data->user_id' name='$data->name' book_id='$data->book_id' title='$data->title' data-type='detail_history' data-toggle='modal'>"
+                                ."<a href='#' class='text-yellow' id_edit_history='$data->id' book_copies_id='$data->book_copies_id' user_id='$data->user_id' name='$data->name' book_id='$data->book_id' title='$data->title' data-type='detail_history' data-toggle='modal'>"
                                     ."<i class='ace-icon fa fa-eye bigger-130'></i>"
                                 ."</a>"
                             ."</td>"
@@ -215,6 +278,91 @@ class AdminController extends Controller
                                 ."</a>"
 
                             ."</td>"
+                        ."</tr>";
+                }
+                return Response($result);
+            }
+        }
+    }
+
+    public function searchRentBook(Request $request){
+        if($request->ajax()){
+
+            $result="";
+
+            $history = $data['list'] = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copies_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear', 'books.id as book_id', 'book_copies.state_detail')->where('book_histories.state', 1)->where('book_copies.state_detail', 'borrowed')
+            ->where('users.name','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.user_id','LIKE','%'.$request->data_search.'%')
+            ->orWhere('books.title','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.id','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.book_copies_id','LIKE','%'.$request->data_search.'%')->get();
+            if($history){
+                foreach ($history as  $key => $data) {
+                    $result .= 
+
+                            "<tr row_id_rent='$data->id'>"
+                            ."<td class='text-center'>$data->id</td>"
+                            ."<td class='text-center'>$data->book_copies_id</td>"
+                            ."<td class='text-center'>$data->user_id</td>"
+                            ."<td class='text-center'>$data->name</td>"
+                            ."<td class='text-center'>$data->book_id</td>"
+                            ."<td class='text-center'>$data->title</td>"
+                            ."<td class='text-center'>"
+                                ."<a href='#' class='text-yellow' id_active_history='<?php echo $data->id; ?>' book_copies_id='{{$data->book_copies_id}}' user_id='{{$data->user_id}}' name='{{$data->name}}' book_id='{{$data->book_id}}' title='{{$data->title}}' data-type='active-history' data-toggle='modal'>"
+                                    ."<i class='ace-icon fa fa-eye bigger-130'></i>"
+                                ."</a>"
+                            ."</td>"
+                            
+                            ."<td class='text-center'>"
+                                ."<a class='text-green' href='#' id='<?php echo $data->id; ?>' book_copies_id='{{$data->book_copies_id}}' user_id='{{$data->user_id}}' data-type='rent-history' data-toggle='modal'>"
+                                    ."<i class='ace-icon fa fa-hourglass-start bigger-130'></i>"
+                                ."</a>"
+
+                            ."</td>"
+                            ."<td class='text-center'>$data->state_detail</td>"
+                        ."</tr>";
+                }
+                return Response($result);
+            }
+        }
+    }
+
+    public function searchReturnBook(Request $request){
+        if($request->ajax()){
+
+            $result="";
+
+            $history = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copies_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear', 'books.id as book_id', 'book_copies.state_detail')->where('book_histories.state', 1)->where('book_copies.state_detail', 'rented')
+            ->where('users.name','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.user_id','LIKE','%'.$request->data_search.'%')
+            ->orWhere('books.id','LIKE','%'.$request->data_search.'%')
+            ->orWhere('books.title','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.id','LIKE','%'.$request->data_search.'%')
+            ->orWhere('book_histories.book_copies_id','LIKE','%'.$request->data_search.'%')->get();
+            if($history){
+                foreach ($history as  $key => $data) {
+                    $result .= 
+
+                            "<tr row_id_return='$data->id'>"
+                            ."<td class='text-center'>$data->id</td>"
+                            ."<td class='text-center'>$data->book_copies_id</td>"
+                            ."<td class='text-center'>$data->user_id</td>"
+                            ."<td class='text-center'>$data->name</td>"
+                            ."<td class='text-center'>$data->book_id</td>"
+                            ."<td class='text-center'>$data->title</td>"
+                            ."<td class='text-center'>"
+                                ."<a href='#' class='text-yellow' id_active_history='<?php echo $data->id; ?>' book_copies_id='{{$data->book_copies_id}}' user_id='{{$data->user_id}}' name='{{$data->name}}' book_id='{{$data->book_id}}' title='{{$data->title}}' data-type='active-history' data-toggle='modal'>"
+                                    ."<i class='ace-icon fa fa-eye bigger-130'></i>"
+                                ."</a>"
+                            ."</td>"
+                            
+                            ."<td class='text-center'>"
+                                ."<a class='text-blue' href='#' id='<?php echo $data->id; ?>' book_copies_id='{{$data->book_copies_id}}' user_id='{{$data->user_id}}' data-type='return-history' data-toggle='modal'>"
+                                    ."<i class='ace-icon fa fa-hourglass-end bigger-130'></i>"
+                                ."</a>"
+
+                            ."</td>"
+                            ."<td class='text-center'>$data->state_detail</td>"
                         ."</tr>";
                 }
                 return Response($result);

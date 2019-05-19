@@ -134,6 +134,62 @@ jQuery(function($) {
 		
 	});
 
+    $('#search').on('click',function(){
+        // alert(1);
+        var value=$('#data_search').val();
+        // alert(value);
+        $.ajax({
+            type : 'get',
+            url : '/searchAuthor',
+            data: {'data_search':value},
+            success:function(data){
+                // console.log(data);
+                $('#body_list_author').html(data);
+                
+                $('a[data-type=update-author]').on('click', function(){
+
+
+                    var id = $(this).attr("id_edit_author");
+                    var name = $(this).attr("name");
+                    // alert(name);
+
+                    $.ajax({
+
+                        url: '/api/v1/authors/get/'+id,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(data) {
+                            name = data.name;
+                            // alert(name);
+                            $('#author-type').val(name);
+                        },
+                        error: function(mess){
+                            alert("Loi gi nay");
+                            console.log(mess);
+                        }
+                    });
+
+                    // $('#author-type').val(name);
+                    $('#author-id').val(id);
+                    $('#editModal-author').modal('show');
+                });
+
+                $('a[data-type=delete-author]').on('click', function(){
+
+                    var id = $(this).attr("id_delete_author");
+
+                    $('#author-delete').val(id);
+                    $('#deleteModal-author').modal('show');
+
+                });
+            },
+            error: function(err){
+                alert("fail");
+                console.log(err);
+            }
+        });
+    });
+
     function load_data_author(){
         $.ajax({
 

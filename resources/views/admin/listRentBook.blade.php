@@ -34,9 +34,9 @@
                   <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">ID Book Copy</th>
-                    <!-- <th class="text-center">Book Title</th> -->
                     <th class="text-center">ID User</th>
                     <th class="text-center">Name</th>
+                    <th class="text-center">ID Book</th>
                     <th class="text-center">Detail</th>
                     <th class="text-center">Rent</th>
                     <!-- <th class="text-center">Return</th> -->
@@ -45,11 +45,35 @@
                 </thead>
                 <tbody id="body_rent_book">
             
-                  
+                  @foreach($list as $history)
+
+                        <tr row_id_rent="{{$history->id}}">
+                            <td class="text-center">{{$history->id}}</td>
+                            <td class="text-center">{{$history->user_id}}</td>
+                            <td class="text-center">{{$history->name}}</td>
+                            <td class="text-center">{{$history->book_id}}</td>
+                            <td class="text-center">{{$history->title}}</td>
+                            <td class="text-center">
+                                <a href="#" class="text-yellow" id_active_history="<?php echo $history->id; ?>" book_copies_id="{{$history->book_copies_id}}" user_id="{{$history->user_id}}" name="{{$history->name}}" book_id="{{$history->book_id}}" title="{{$history->title}}" data-type="active-history" data-toggle="modal">
+                                    <i class="ace-icon fa fa-eye bigger-130"></i>
+                                </a>
+                            </td>
+                            
+                            <td class="text-center">
+                                <a class="text-green" href="#" id="<?php echo $history->id; ?>" book_copies_id="{{$history->book_copies_id}}" user_id="{{$history->user_id}}" data-type="rent-history" data-toggle="modal">
+                                    <i class="ace-icon fa fa-hourglass-start bigger-130"></i>
+                                </a>
+
+                            </td>
+                            <td class="text-center">{{$history->state_detail}}</td>
+                        </tr>
+
+                    @endforeach
                     
                 </tbody>
                 
               </table>
+              <div style="margin-left: 0px;">{!! $list->links() !!}</div>
             </div>
             <!-- /.box-body -->
         </div>
@@ -179,6 +203,7 @@
                 </div>  
                 <br/>
                 <div class="modal-footer">
+                    <input type="hidden" name="rent_id" id="rent_id" value="">
                     <input type="hidden" name="rent_user_id" id="rent_user_id" value="">
                     <input type="hidden" name="rent_bookCopy_id" id="rent_bookCopy_id" value="">
                     <button class="btn btn-info" type="submit" id="rent_id">
