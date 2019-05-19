@@ -1,3 +1,4 @@
+
 <div class="header-top">
 	<div class="container">
 		<div class="row">
@@ -57,7 +58,7 @@
 	</div>
 	</div>
 	<div class="container main-menu">
-	<div class="row align-items-center justify-content-between d-flex">
+	<div class="row align-items-center  d-flex">
       <div id="logo">
         <a href="{{route('homePage')}}"><img style="height: 50px; width: 50px;" src="../frontend/img/logo1.png" alt="" title="" /><h3 style="color: white; margin-left: 70px; margin-top: -28px;">Library</h3></a>
       </div>
@@ -67,3 +68,5 @@
       </nav><!-- #nav-menu-container -->
 	</div>
 </div>
+
+

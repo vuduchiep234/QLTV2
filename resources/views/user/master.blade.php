@@ -48,7 +48,7 @@
 			<section class="banner-area relative" id="home">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
-					<div class="row fullscreen d-flex align-items-center justify-content-between">
+					<div class="row fullscreen d-flex align-items-center ">
 						<div class="banner-content col-lg-9 col-md-12">
 							<h1 class="text-uppercase">
 								Thư viện Đại học Bách Khoa Hà Nội
