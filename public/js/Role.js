@@ -296,7 +296,7 @@ jQuery(function($) {
             url : '/searchRole',
             data: {'data_search':value},
             success:function(data){
-                // console.log(data);
+                console.log(data);
                 $('#body_list_role').html(data);
                 $('a[data-type=update-role]').on('click', function(){
 

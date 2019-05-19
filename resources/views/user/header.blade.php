@@ -11,12 +11,13 @@
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-				<input id="search_book" class="form-control" type="text" placeholder="Search" aria-label="Search" onkeypress="return runScript(event)">
 				 @if(!Session::has('user_id'))
+				 <span style="float: right;">
 				<a href="{{route('register')}}"><span class="lnr lnr-phone-handset"></span> <span class="text"><b><u>Đăng ký</u></b></span></a>
 				<a href="{{route('login')}}"><span class="lnr lnr-envelope"></span> <span class="text"><b><u>Đăng nhập</u></b></span></a>
+				</span>
 				@else
-				<li class="dropdown user user-menu">
+				<li class="dropdown user user-menu" style="float: right;">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		              <!-- <img src="backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
 		              <span class="hidden-xs"><b>{{Session::get('name')}}</b></span>
@@ -44,6 +45,13 @@
 		        </li>
 
 				@endif
+				<div class="form-group">
+					<input style="width: 400px; float: right; margin-right: 20px;" id="data_search" name="data_search" class="form-control" type="text" placeholder="Search" aria-label="Search"> 
+					 <!-- onkeypress="return runScript(event)" -->
+	            
+					<div id="dataList">
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
