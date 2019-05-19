@@ -139,3 +139,5 @@ Route::get('/searchRentBook','AdminController@searchRentBook');
 Route::get('/searchReturnBook','AdminController@searchReturnBook');
 
 Route::get('/searchBookHistory','AdminController@searchBookHistory');
+
+Route::get('/searchBookUser','UserController@searchBookUser')->name('searchBookUser');
