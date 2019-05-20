@@ -6,6 +6,14 @@ jQuery(function($) {
 
     $('.select2').select2();
 
+    $('.dropdown_publisher li').click(function(){
+          $('#publisher_id').val($(this).text());
+          $('#edit_publisher_id').val($(this).text());
+          $('#_publisher_id').val($(this).attr('id'));
+          $('#_edit_publisher_id').val($(this).attr('id'));
+
+      });
+
     $('#addBook').click(function(){
 
        $('#title').val("");
@@ -16,7 +24,7 @@ jQuery(function($) {
        $('#myModal-book').modal('show');
 
    });
-
+   
    showModal();
 
     $('.select2').select2();
@@ -115,7 +123,7 @@ jQuery(function($) {
             }
 
         });
-        var id = id_book_edit_click;
+        var id = $('#book-id').val();
         var title = $('#edit_title').val();
 
         console.log("title "+title);
@@ -255,6 +263,156 @@ jQuery(function($) {
         });
 
     });
+
+  function showModal(){
+      $('a[data-type=update-book]').on('click', function(){
+
+       $('#edit_title').val("");
+       $('#select_author').val('');
+       $('#select_genre').val('');
+       $('#edit_published_year').val("");
+       $('#editModal-book').modal('show');
+
+
+       var id = $(this).attr("id_edit_book");
+       
+       $('#book-id').val(id);
+       var edit_title = "";
+       
+       var edit_image_url=$(this).attr("image");
+       
+       $.ajax({
+
+           url: '/api/v1/books/get?id='+id+'&relations[]=authors&relations[]=genres&relations[]=publisher',
+           type: 'get',
+           dataType: 'json',
+           success: function(data) {
+              title = data.title;
+              title_edit_click=title;
+              $('#edit_title').val(title);
+
+              // $("#select_author option:selected").each(function () {
+              //     $(this).remove(); //or whatever else
+              // });
+              // $("#select_genre option:selected").each(function () {
+              //     $(this).remove(); //or whatever else
+              // });
+
+              $("#select_author option:selected").prop("selected", false);
+              $("#select_genre option:selected").prop("selected", false);
+              var nameAuthor = [];
+              var nameGenre = [];
+              // alert(id);
+              for(author_id in data.authors){
+                $("#select_author option[id="+data.authors[author_id].id+"]").prop("selected", "selected");
+                // nameAuthor.push(data.authors[author_id].name);
+              }
+              for(genre_id in data.genres){
+                $("#select_genre option[id="+data.genres[genre_id].id+"]").prop("selected", "selected");
+                // nameGenre.push(data.genres[genre_id].genreType);
+              }
+
+              // $("#select_author").val(nameAuthor);
+              // $("#select_genre").val(nameGenre);
+              $('#edit_published_year').val(data.publishedYear);
+              $('#edit_publisher_id').val(data.publisher.publisherName);
+              // alert(data.publisherName);
+
+               
+           },
+           error: function(){
+               alert("Error get data book");
+           }
+       });
+       // console.log(title);
+       // $.ajax({
+
+       //     url: '/api/v1/publishers/get?id='+edit_publisher_id,
+       //     type: 'get',
+       //     dataType: 'json',
+       //     success: function(data) {
+       //         edit_publisher_id = data.publisherName;
+       //         $('#edit_publisher_id').val(edit_publisher_id);
+       //     },
+       //     error: function(){
+       //         alert("Error get data publisher");
+       //     }
+       // });
+
+       // var nameAuthor = [];
+
+       // for(var a = 0; a < author_array.length; a++){
+       //     // alert(author_array[a]);
+       //     $.ajax({
+
+       //         url: '/api/v1/authors/get?id='+author_array[a],
+       //         type: 'get',
+       //         dataType: 'json',
+       //         success: function(data) {
+       //             nameAuthor.push(data.name);
+       //             $('#select_author').val(nameAuthor);
+
+       //         },
+       //         error: function(){
+       //             alert("Error get data author");
+       //         }
+       //     });
+       // }
+       // var genreType = [];
+
+       // for(var g = 0; g < genre_array.length; g++){
+       //     // alert(genre_array[g]);
+       //     $.ajax({
+
+       //         url: '/api/v1/genres/get?id='+genre_array[g],
+       //         type: 'get',
+       //         dataType: 'json',
+       //         success: function(data) {
+       //             genreType.push(data.genreType);
+       //             $('#select_genre').val(genreType);
+
+       //         },
+       //         error: function(){
+       //             alert("Error get data genre");
+       //         }
+       //     });
+       // }
+
+
+
+
+       // $('#edit_title').val(title);
+
+       $('#edit_published_year').val(edit_published_year);
+       $('#editModal-book').modal('show');
+       // console.log(nameAuthor);
+       // console.log(genreType);
+      });
+
+     $('a[data-type=delete-book]').on('click', function(){
+
+         var id = $(this).attr("id_delete_book");
+
+         $('#book-delete').val(id);
+         $('#deleteModal-book').modal('show');
+
+     });
+
+     $('a[data-type=import-book]').click(function(){
+
+         $('#quantity_book').val("");
+
+         var id = $(this).attr("id_edit_book");
+
+         $('#import_book_id').val(id);
+
+         $('#importModal-book').modal('show');
+
+     });
+
+
+      
+  }
 
    function loadData() {
        $.ajax({
@@ -566,177 +724,6 @@ jQuery(function($) {
            $('#importModal-book').modal('show');
 
        });
-   }
-
-   function showModal(){
-
-    $('a[data-type=update-book]').on('click', function(){
-
-       $('#edit_title').val("");
-       $('#select_author').val('');
-       $('#select_genre').val('');
-       $('#edit_published_year').val("");
-       $('#editModal-book').modal('show');
-
-
-       var id = $(this).attr("id_edit_book");
-       id_book_edit_click=id;
-       var edit_title = "";
-       var edit_author_id = $(this).attr("author_id");
-       var edit_image_url=$(this).attr("image");
-       var edit_genre_id = $(this).attr("genre_id");
-       var edit_publisher_id = $(this).attr("publisher_id");
-       id_publisher_edit_click=edit_publisher_id;
-       var edit_published_year = $(this).attr("publishedYear");
-       console.log("id "+edit_publisher_id);
-       // var author = $(this).attr("author");
-       // var genre = $(this).attr("genre");
-       var author_array = [];
-       var genre_array = [];
-       $('#edit_uploadPreview').attr("src",edit_image_url);
-       // console.log(edit_image_url);
-
-       // author_array = edit_author_id.split(",");
-       // author_array = author_array.split(",");
-
-       // genre_array = edit_genre_id.split(",");
-       // genre_array = genre_array.split(",");
-       // console.log(author_array);
-       // console.log(genre_array);
-       $.ajax({
-
-           url: '/api/v1/books/get?id='+id+'&relations[]=authors&relations[]=genres',
-           type: 'get',
-           dataType: 'json',
-           success: function(data) {
-              title = data.title;
-              title_edit_click=title;
-              $('#edit_title').val(title);
-
-              $("#select_author option:selected").each(function () {
-                  $(this).remove(); //or whatever else
-              });
-              $("#select_genre option:selected").each(function () {
-                  $(this).remove(); //or whatever else
-              });
-
-              // $("#select_author option:selected").prop("selected", false);
-              // $("#select_genre option:selected").prop("selected", false);
-              var nameAuthor = [];
-              var nameGenre = [];
-              // alert(id);
-              for(author_id in data.authors){
-                $("#select_author option[id="+data.authors[author_id].id+"]").prop("selected", "selected");
-                // nameAuthor.push(data.authors[author_id].name);
-              }
-              for(genre_id in data.genres){
-                $("#select_genre option[id="+data.genres[genre_id].id+"]").prop("selected", "selected");
-                // nameGenre.push(data.genres[genre_id].genreType);
-              }
-
-              // $("#select_author").val(nameAuthor);
-              // $("#select_genre").val(nameGenre);
-              $('#edit_published_year').val(data.publishedYear);
-               
-           },
-           error: function(){
-               alert("Error get data book");
-           }
-       });
-       // console.log(title);
-       $.ajax({
-
-           url: '/api/v1/publishers/get?id='+edit_publisher_id,
-           type: 'get',
-           dataType: 'json',
-           success: function(data) {
-               edit_publisher_id = data.publisherName;
-               $('#edit_publisher_id').val(edit_publisher_id);
-           },
-           error: function(){
-               alert("Error get data publisher");
-           }
-       });
-
-       // var nameAuthor = [];
-
-       // for(var a = 0; a < author_array.length; a++){
-       //     // alert(author_array[a]);
-       //     $.ajax({
-
-       //         url: '/api/v1/authors/get?id='+author_array[a],
-       //         type: 'get',
-       //         dataType: 'json',
-       //         success: function(data) {
-       //             nameAuthor.push(data.name);
-       //             $('#select_author').val(nameAuthor);
-
-       //         },
-       //         error: function(){
-       //             alert("Error get data author");
-       //         }
-       //     });
-       // }
-       // var genreType = [];
-
-       // for(var g = 0; g < genre_array.length; g++){
-       //     // alert(genre_array[g]);
-       //     $.ajax({
-
-       //         url: '/api/v1/genres/get?id='+genre_array[g],
-       //         type: 'get',
-       //         dataType: 'json',
-       //         success: function(data) {
-       //             genreType.push(data.genreType);
-       //             $('#select_genre').val(genreType);
-
-       //         },
-       //         error: function(){
-       //             alert("Error get data genre");
-       //         }
-       //     });
-       // }
-
-
-
-
-       // $('#edit_title').val(title);
-
-       $('#edit_published_year').val(edit_published_year);
-       $('#editModal-book').modal('show');
-       // console.log(nameAuthor);
-       // console.log(genreType);
-   });
-
-   $('a[data-type=delete-book]').on('click', function(){
-
-       var id = $(this).attr("id_delete_book");
-
-       $('#book-delete').val(id);
-       $('#deleteModal-book').modal('show');
-
-   });
-
-   $('a[data-type=import-book]').click(function(){
-
-       $('#quantity_book').val("");
-
-       var id = $(this).attr("id_edit_book");
-
-       $('#import_book_id').val(id);
-
-       $('#importModal-book').modal('show');
-
-   });
-
-
-    $('.dropdown_publisher li').click(function(){
-        $('#publisher_id').val($(this).text());
-        $('#edit_publisher_id').val($(this).text());
-        $('#_publisher_id').val($(this).attr('id'));
-        $('#_edit_publisher_id').val($(this).attr('id'));
-
-    });
    }
 
 

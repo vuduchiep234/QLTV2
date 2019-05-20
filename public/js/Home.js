@@ -66,7 +66,7 @@ jQuery(function($) {
                 },
                 success: function(data){
 
-                    window.location.href="/login";
+                    window.location.href="/homePage";
                    
                 },
                 error: function(){
