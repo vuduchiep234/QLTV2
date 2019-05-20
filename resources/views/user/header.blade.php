@@ -19,30 +19,30 @@
 				</span>
 				@else
 				<li class="dropdown user user-menu" style="float: right;">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		            <a href="#" class="dropdown-toggle dropdown" data-toggle="dropdown">
 		              <!-- <img src="backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
-		              <span class="hidden-xs"><b>{{Session::get('name')}}</b></span>
+		              <span class="hidden-xs dropdown"><b>{{Session::get('name')}}</b></span>
 		            </a>
-		            <ul class="dropdown-menu">
+		            <span class="dropdown-content text-center">
 
 		                <!-- <li> -->
-		                  	<div class="col-xs-4 text-center">
-		                    	<a id="_register_card" data_id="{{Session::get('user_id')}}" href="#" data-toggle="modal"><span class="hidden-xs" style="color: black; font-size: 12px; float: left; margin-left: 10px;">Đăng ký thẻ</span></a>
-		                  	</div>
+		                  	<!-- <div class="col-xs-4 text-center"> -->
+		                    	<a id="_register_card" data_id="{{Session::get('user_id')}}" href="#" data-toggle="modal"><span class="hidden-xs text-center" style="color: black; font-size: 12px;  ">Đăng ký thẻ</span></a>
+		                  	<!-- </div> -->
 
 		              	<!-- </li> -->
 		              	<!-- <li> -->
-		                  	<div class="col-xs-4 text-center">
-		                    	<a id="" data_id="{{Session::get('user_id')}}" href="#" data-toggle="modal"><span class="hidden-xs _change_password" style="color: black; font-size: 12px; float: left; margin-left: 10px;">Đổi mật khẩu</span></a>
-		                  	</div>
+		                  	<!-- <div class="col-xs-4 text-center"> -->
+		                    	<a id="" data_id="{{Session::get('user_id')}}" href="#" data-toggle="modal"><span class="hidden-xs _change_password text-center" style="color: black; font-size: 12px; ">Đổi mật khẩu</span></a>
+		                  	<!-- </div> -->
 		              	<!-- </li> -->
 		              	<!-- <li> -->
-		                  	<div class="col-xs-4 text-center">
-		                    	<a class="logout" data_id="{{Session::get('user_id')}}" href="#" data-toggle="modal"><span class="hidden-xs" style="color: black; font-size: 12px; float: left; margin-left: 10px;">Đăng xuất</span></a>
-		                  	</div>
+		                  	<!-- <div class="col-xs-4 text-center"> -->
+		                    	<a class="logout" data_id="{{Session::get('user_id')}}" href="#" data-toggle="modal"><span class="hidden-xs text-center" style="color: black; font-size: 12px; ">Đăng xuất</span></a>
+		                  	<!-- </div> -->
 		              	<!-- </li> -->
 
-		            </ul>
+		            </span>
 		        </li>
 
 				@endif
