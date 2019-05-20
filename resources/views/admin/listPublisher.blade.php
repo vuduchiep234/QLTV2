@@ -44,13 +44,13 @@
                             <td class="text-center">{{$publisher->id}}</td>
                             <td class="text-center">{{$publisher->publisherName}}</td>
                             <td class="text-center">
-                                <a href="#" class="text-blue" id="<?php echo $publisher->id; ?>" name="{{$publisher->publisherName}}" data-type="update-publisher" data-toggle="modal">
+                                <a href="#" class="text-blue" id_edit_publisher="<?php echo $publisher->id; ?>" name="{{$publisher->publisherName}}" data-type="update-publisher" data-toggle="modal">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
                             
                             <td class="text-center">
-                                <a class="text-red" href="#" id="<?php echo $publisher->id; ?>" data-type="delete-publisher" data-toggle="modal">
+                                <a class="text-red" href="#" id_delete_publisher="<?php echo $publisher->id; ?>" data-type="delete-publisher" data-toggle="modal">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 </a>
 

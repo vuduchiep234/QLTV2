@@ -51,7 +51,7 @@ jQuery(function($) {
     $('a[data-type=update-genre]').on('click', function(){
 
 
-    	var id = $(this).attr("id");
+    	var id = $(this).attr("id_edit_genre");
     	var name = $(this).attr("name");
     	// alert(name);
 
@@ -94,7 +94,7 @@ jQuery(function($) {
 
     $('a[data-type=delete-genre]').on('click', function(){
 
-        var id = $(this).attr("id");
+        var id = $(this).attr("id_delete_genre");
 
         $('#genre-delete').val(id);
         $('#deleteModal-genre').modal('show');

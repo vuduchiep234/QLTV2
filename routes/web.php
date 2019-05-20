@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('a');
 });
-
+// if(Session::has('role_id') == ){
 Route::get('homeAdmin',
  	['as'=>'homeAdmin', 'uses'=>'AdminController@getHome']
 );
@@ -83,6 +83,8 @@ Route::get('listReturnBook',
 	['as'=>'listReturnBook', 'uses'=>'AdminController@getListReturnBook']
 );
 
+// }
+
 Route::get('register',
 	['as'=>'register', 'uses'=>'RegisterController@getRegister']
 );
@@ -139,3 +141,5 @@ Route::get('/searchRentBook','AdminController@searchRentBook');
 Route::get('/searchReturnBook','AdminController@searchReturnBook');
 
 Route::get('/searchBookHistory','AdminController@searchBookHistory');
+
+Route::get('/searchBookUser','UserController@searchBookUser')->name('searchBookUser');

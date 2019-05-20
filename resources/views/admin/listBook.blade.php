@@ -43,7 +43,7 @@
                       <th class="text-center">Genre</th>
 
                       <th class="text-center">Publisher</th>
-                      <th class="text-center">Publisher Year</th>
+                      <th class="text-center">Published Year</th>
                       <th class="text-center">Quantity</th>
 
                       <th class="text-center">Import</th>
@@ -56,7 +56,7 @@
 
                     @foreach($list as $book)
 
-                        <tr>
+                        <tr row_id_book="{{$book->id}}">
                             <td class="text-center">{{$book->id}}</td>
                             <td class="text-center">{{$book->title}}</td>
                             <td class="text-center">
@@ -74,7 +74,7 @@
                             <td class="text-center">{{$book->BookQuantity->quantity}}</td>
 
                             <td class="text-center">
-                                <a href="#" class="text-yellow" id="<?php echo $book->id; ?>" id_edit_book={{$book->id}} title="{{$book->title}}" publisher_id="{{$book->publisher_id}}" publishedYear="{{$book->publishedYear}}"  data-type="import-book" data-toggle="modal">
+                                <a href="#" class="text-yellow" id="<?php echo $book->id; ?>" id_edit_book="{{$book->id}}" title="{{$book->title}}" publisher_id="{{$book->publisher_id}}" publishedYear="{{$book->publishedYear}}"  data-type="import-book" data-toggle="modal">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
@@ -99,7 +99,7 @@
                                 }
 
                             }
-                            echo $authorsID;
+                            // echo $authorsID;
                             if (empty (end($book->images))){
 
                                 echo "<td class='text-center'>"
@@ -122,7 +122,7 @@
 
 
                             <td class="text-center">
-                                <a class="text-red" href="#" id="<?php echo $book->id; ?>" data-type="delete-book" data-toggle="modal">
+                                <a class="text-red" href="#" id_delete_book="<?php echo $book->id; ?>" data-type="delete-book" data-toggle="modal">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 </a>
 

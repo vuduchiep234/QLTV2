@@ -50,13 +50,13 @@
                             <td class="text-center">{{$author->id}}</td>
                             <td class="text-center">{{$author->name}}</td>
                             <td class="text-center">
-                                <a href="#" class="text-blue" id="<?php echo $author->id; ?>" name="{{$author->name}}" data-type="update-author" data-toggle="modal">
+                                <a href="#" class="text-blue" id_edit_author="<?php echo $author->id; ?>" name="{{$author->name}}" data-type="update-author" data-toggle="modal">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
 
                             <td class="text-center">
-                                <a class="text-red" href="#" id="<?php echo $author->id; ?>" data-type="delete-author" data-toggle="modal">
+                                <a class="text-red" href="#" id_delete_author="<?php echo $author->id; ?>" data-type="delete-author" data-toggle="modal">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 </a>
 

@@ -67,4 +67,50 @@ class UserController extends Controller
         $books =  $this->service->paginated($attributes);
         return view('paginatedExample', ['books' => $books]);
     }
+
+    public function searchBookUser(Request $request){
+        if($request->ajax()){
+
+            // $result="";
+            $output="";
+
+            // $history = DB::table('books')->join('book_images', 'books.id', 'book_images.book_id')->join('images', 'images.id', 'book_images.image_id')->select('books.*', 'images.imageURL')
+            // ->where('books.title','LIKE','%'.$request->data_search.'%')
+            // ->get();
+             
+            $data =  DB::table('books')->join('book_images', 'books.id', 'book_images.book_id')->join('images', 'images.id', 'book_images.image_id')->select('books.*', 'images.imageURL')
+            ->where('books.title','LIKE','%'.$request->data_search.'%')
+            ->get();
+              $output = "<ul class='dropdown-menu' style='display:table; position:relative;'>";
+              foreach($data as $row)
+              {
+                $href = "{{route('detailBook', 79)}}";
+               $output .=
+               "<li><a href='/detailBook/$row->id'>".$row->title."</a></li>"; 
+              }
+              $output .= "</ul>";
+              // echo $output;
+              return Response($output);
+            // $total_row = $history->count();
+            // if($total_row > 0){
+            //     foreach ($history as  $key => $data) {
+            //         $result .= 
+
+            //             "<tr row_id_book='$data->id'>"
+            //                 ."<td class='text-center'>$data->id</td>"
+            //                 ."<td class='text-center'>$data->title</td>"
+                            
+            //             ."</tr>";
+            //     }
+                
+            // }
+            // else{
+            //    $result .= 
+            //        "<tr>"
+            //             ."<td class='text-center' colspan='5'>No Data Found</td>"
+            //        ."</tr>";
+            // }
+            // return Response($result);
+        }
+    }
 }

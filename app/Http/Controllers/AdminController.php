@@ -39,7 +39,7 @@ class AdminController extends Controller
 
     public function getListBook(){
 
-        $data['list'] = Book::with('authors','genres','Publisher','BookQuantity','images')->paginate(10);
+        $data['list'] = Book::with('authors','genres','Publisher','BookQuantity','images')->paginate(5);
         $data['listP'] = Publisher::all();
         $data['listA'] = Author::all();
         $data['listG'] = Genre::all();
@@ -100,7 +100,8 @@ class AdminController extends Controller
             $result="";
 
             $role = Role::where('roleType','LIKE','%'.$request->data_search.'%')->orWhere('id','LIKE','%'.$request->data_search.'%')->get();
-            if($role){
+            $total_row = $role->count();
+            if($total_row  > 0){
                 foreach ($role as  $key => $data) {
                     $result .= "<tr row_id_role='$data->id'>".
                                 "<td class='text-center'>".$data->id."</td>".
@@ -116,9 +117,15 @@ class AdminController extends Controller
                                         ."</a>"
                                     ."</td>"
                             ."</tr>";
-                }
-                return Response($result);
+                }  
             }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
         }
     }
 
@@ -132,7 +139,8 @@ class AdminController extends Controller
             ->orWhere('users.id','LIKE','%'.$request->data_search.'%')
             ->orWhere('users.email','LIKE','%'.$request->data_search.'%')
             ->orWhere('roles.roletype','LIKE','%'.$request->data_search.'%')->get();
-            if($user){
+            $total_row = $user->count();
+            if($total_row > 0){
                 foreach ($user as  $key => $data) {
                     $result .= 
 
@@ -155,8 +163,15 @@ class AdminController extends Controller
                             ."</td>"
                         ."</tr>";
                 }
-                return Response($result);
+                
             }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
         }
     }
 
@@ -166,7 +181,8 @@ class AdminController extends Controller
             $result="";
 
             $author = Author::where('name','LIKE','%'.$request->data_search.'%')->orWhere('id','LIKE','%'.$request->data_search.'%')->get();
-            if($author){
+            $total_row = $author->count();
+            if($total_row > 0){
                 foreach ($author as  $key => $data) {
                     $result .= "<tr row_id_author='$data->id'>".
                                 "<td class='text-center'>".$data->id."</td>".
@@ -183,8 +199,14 @@ class AdminController extends Controller
                                     ."</td>"
                             ."</tr>";
                 }
-                return Response($result);
             }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
         }
     }
 
@@ -194,7 +216,8 @@ class AdminController extends Controller
             $result="";
 
             $genre = Genre::where('genreType','LIKE','%'.$request->data_search.'%')->orWhere('id','LIKE','%'.$request->data_search.'%')->get();
-            if($genre){
+            $total_row = $genre->count();
+            if($total_row > 0){
                 foreach ($genre as  $key => $data) {
                     $result .= "<tr row_id_genre='$data->id'>".
                                 "<td class='text-center'>".$data->id."</td>".
@@ -211,8 +234,14 @@ class AdminController extends Controller
                                     ."</td>"
                             ."</tr>";
                 }
-                return Response($result);
             }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
         }
     }
 
@@ -222,7 +251,8 @@ class AdminController extends Controller
             $result="";
 
             $publisher = Publisher::where('publisherName','LIKE','%'.$request->data_search.'%')->orWhere('id','LIKE','%'.$request->data_search.'%')->get();
-            if($publisher){
+            $total_row = $publisher->count();
+            if($total_row > 0){
                 foreach ($publisher as  $key => $data) {
                     $result .= "<tr row_id_publisher='$data->id'>".
                                 "<td class='text-center'>".$data->id."</td>".
@@ -239,8 +269,15 @@ class AdminController extends Controller
                                     ."</td>"
                             ."</tr>";
                 }
-                return Response($result);
+                
             }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
         }
     }
 
@@ -255,7 +292,8 @@ class AdminController extends Controller
             ->orWhere('books.title','LIKE','%'.$request->data_search.'%')
             ->orWhere('book_histories.id','LIKE','%'.$request->data_search.'%')
             ->orWhere('book_histories.book_copies_id','LIKE','%'.$request->data_search.'%')->get();
-            if($history){
+            $total_row = $history->count();
+            if($total_row > 0){
                 foreach ($history as  $key => $data) {
                     $result .= 
 
@@ -280,8 +318,15 @@ class AdminController extends Controller
                             ."</td>"
                         ."</tr>";
                 }
-                return Response($result);
+                
             }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
         }
     }
 
@@ -296,7 +341,8 @@ class AdminController extends Controller
             ->orWhere('books.title','LIKE','%'.$request->data_search.'%')
             ->orWhere('book_histories.id','LIKE','%'.$request->data_search.'%')
             ->orWhere('book_histories.book_copies_id','LIKE','%'.$request->data_search.'%')->get();
-            if($history){
+            $total_row = $history->count();
+            if($total_row > 0){
                 foreach ($history as  $key => $data) {
                     $result .= 
 
@@ -322,8 +368,15 @@ class AdminController extends Controller
                             ."<td class='text-center'>$data->state_detail</td>"
                         ."</tr>";
                 }
-                return Response($result);
+                
             }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
         }
     }
 
@@ -339,7 +392,8 @@ class AdminController extends Controller
             ->orWhere('books.title','LIKE','%'.$request->data_search.'%')
             ->orWhere('book_histories.id','LIKE','%'.$request->data_search.'%')
             ->orWhere('book_histories.book_copies_id','LIKE','%'.$request->data_search.'%')->get();
-            if($history){
+            $total_row = $history->count();
+            if($total_row > 0){
                 foreach ($history as  $key => $data) {
                     $result .= 
 
@@ -365,8 +419,15 @@ class AdminController extends Controller
                             ."<td class='text-center'>$data->state_detail</td>"
                         ."</tr>";
                 }
-                return Response($result);
+                
             }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
         }
     }
 

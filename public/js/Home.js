@@ -66,7 +66,7 @@ jQuery(function($) {
                 },
                 success: function(data){
 
-                    window.location.href="/login";
+                    window.location.href="/homePage";
                    
                 },
                 error: function(){
@@ -260,6 +260,32 @@ jQuery(function($) {
             }
         });
 
+    });
+
+    $('#data_search').keyup(function(){ 
+        var value = $('#data_search').val();
+        // alert(value);
+        if(value != '')
+        {
+         // var _token = $('input[name="_token"]').val();
+            $.ajax({
+                type : 'get',
+                url : '/searchBookUser',
+                data: {'data_search':value},
+                success:function(data){
+                   $('#dataList').fadeIn();  
+                    $('#dataList').html(data);
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+    });
+
+    $(document).on('click', 'li', function(){  
+        $('#data_search').val($(this).text());  
+        $('#dataList').fadeOut();  
     });
     
 });
