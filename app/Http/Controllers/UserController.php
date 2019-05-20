@@ -81,7 +81,7 @@ class UserController extends Controller
             $data =  DB::table('books')->join('book_images', 'books.id', 'book_images.book_id')->join('images', 'images.id', 'book_images.image_id')->select('books.*', 'images.imageURL')
             ->where('books.title','LIKE','%'.$request->data_search.'%')
             ->get();
-              $output = "<ul class='dropdown-menu' style='display:block; position:relative'>";
+              $output = "<ul class='dropdown-menu' style='display:table; position:relative;'>";
               foreach($data as $row)
               {
                 $href = "{{route('detailBook', 79)}}";
