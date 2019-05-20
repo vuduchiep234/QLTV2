@@ -56,7 +56,7 @@
 
                     @foreach($list as $book)
 
-                        <tr>
+                        <tr row_id_book="{{$book->id}}">
                             <td class="text-center">{{$book->id}}</td>
                             <td class="text-center">{{$book->title}}</td>
                             <td class="text-center">
@@ -102,7 +102,7 @@
 
 
                             <td class="text-center">
-                                <a class="text-red" href="#" id="<?php echo $book->id; ?>" data-type="delete-book" data-toggle="modal">
+                                <a class="text-red" href="#" id_delete_book="<?php echo $book->id; ?>" data-type="delete-book" data-toggle="modal">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 </a>
 
