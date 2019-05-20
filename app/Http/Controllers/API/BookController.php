@@ -14,6 +14,7 @@ use App\Decorators\BookDecorators\BorrowBook\BorrowBookProxy;
 use App\Decorators\BookDecorators\BorrowBook\BorrowBookTransactionDecorator;
 use App\Decorators\BookDecorators\CreateBookDecorator;
 use App\Decorators\BookDecorators\GetAllBookDecorator;
+use App\Decorators\BookDecorators\GetBookDecorator;
 use App\Decorators\BookDecorators\UpdateBookDecorator;
 use App\Http\Controllers\Requests\API\Book\BookBorrowRequest;
 use App\Http\Controllers\Requests\API\Book\BookDeleteRequest;
@@ -33,7 +34,12 @@ class BookController extends APIController
 
     public function get(BookGetRequest $request, int $id = null)
     {
-        return parent::_get($request, $id);
+        /**
+         * @var BookService $bookService
+         */
+        $bookService = $this->getService();
+        $bookDecorator = new GetBookDecorator($bookService);
+        return $bookDecorator->getModel($request->all(), $id);
     }
 
     public function post(BookPostRequest $request)
