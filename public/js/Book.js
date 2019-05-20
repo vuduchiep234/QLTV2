@@ -24,7 +24,7 @@ jQuery(function($) {
        $('#myModal-book').modal('show');
 
    });
-   
+
    showModal();
 
     $('.select2').select2();
@@ -142,7 +142,9 @@ jQuery(function($) {
              genre_id_.push($(this).attr('id'));
         });
 
-        var publisher_id = id_publisher_edit_click;
+        // var publisher_id = id_publisher_edit_click;
+        var publisher_id = $('#_publisher_id').val();
+        console.log( "publisher_id  "+publisher_id );
         // var author_id = $('#_edit_author_id').val();
         // var genre_id = $('#_edit_genre_id').val();
         var publishedYear = $('#edit_published_year').val();
@@ -275,12 +277,12 @@ jQuery(function($) {
 
 
        var id = $(this).attr("id_edit_book");
-       
+
        $('#book-id').val(id);
        var edit_title = "";
-       
+
        var edit_image_url=$(this).attr("image");
-       
+
        $.ajax({
 
            url: '/api/v1/books/get?id='+id+'&relations[]=authors&relations[]=genres&relations[]=publisher',
@@ -318,7 +320,7 @@ jQuery(function($) {
               $('#edit_publisher_id').val(data.publisher.publisherName);
               // alert(data.publisherName);
 
-               
+
            },
            error: function(){
                alert("Error get data book");
@@ -411,7 +413,7 @@ jQuery(function($) {
      });
 
 
-      
+
   }
 
    function loadData() {
@@ -532,7 +534,7 @@ jQuery(function($) {
 
                        img.push(image_url);
                    }
-                   output =  
+                   output =
                        "<td class='text-center'>"+data.id+"</td>"
                        +"<td class='text-center'>"+data.title+"</td>"
                        +"<td class='text-center'>"+au+"</td>"
@@ -641,6 +643,7 @@ jQuery(function($) {
                dataType: 'json',
                success: function(data) {
                    edit_publisher_id = data.publisherName;
+                   console.log("namepublishers "+edit_publisher_id);
                    $('#edit_publisher_id').val(edit_publisher_id);
                },
                error: function(){
@@ -659,6 +662,7 @@ jQuery(function($) {
                    dataType: 'json',
                    success: function(data) {
                        nameAuthor.push(data.name);
+                       console.log("nameAuthor "+nameAuthor);
                        $('#select_author').val(nameAuthor);
 
                    },
@@ -727,7 +731,7 @@ jQuery(function($) {
    }
 
 
-     
+
 
    // $('#search_book').on('click',function(){
    //      // alert(1);
