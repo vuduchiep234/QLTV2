@@ -113,4 +113,38 @@ class UserController extends Controller
             // return Response($result);
         }
     }
+
+    public function bookHistory(Request $request){
+       
+
+        $history = DB::table('book_histories')->join('book_copies', 'book_copies.id', 'book_histories.book_copies_id')->join('users', 'users.id', 'book_histories.user_id')->join('books', 'books.id', 'book_copies.book_id')->select('book_histories.*', 'books.title', 'users.name', 'books.publishedYear', 'books.id as book_id', 'book_copies.state_detail')
+            ->where('book_histories.user_id', $request->user_id)
+            ->get();
+            $total_row = $history->count();
+            $result = "";
+            if($total_row > 0){
+                foreach ($history as  $key => $data) {
+                    $result .= 
+
+                            "<tr row_id_user='$data->id'>"
+                            // ."<td class='text-center'>$data->id</td>"
+                            
+                            ."<td class='text-center'>$data->user_id</td>"
+                            ."<td class='text-center'>$data->name</td>"
+                            ."<td class='text-center'>$data->book_id</td>"
+                            ."<td class='text-center'>$data->title</td>"
+                            ."<td class='text-center'>$data->created_at</td>"
+                            ."<td class='text-center'>$data->state_detail</td>"
+                        ."</tr>";
+                }
+                
+            }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='5'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
+        }
 }

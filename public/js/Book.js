@@ -729,23 +729,24 @@ jQuery(function($) {
 
      
 
-   // $('#search_book').on('click',function(){
-   //      // alert(1);
-   //      var value=$('#data_search').val();
-   //      // alert(value);
-   //      $.ajax({
-   //          type : 'get',
-   //          url : '/searchBookUser',
-   //          data: {'data_search':value},
-   //          success:function(data){
-   //              console.log(data);
-   //              $('#countryList').html(data);
-   //          },
-   //          error: function(err){
-   //              alert("fail");
-   //              console.log(err);
-   //          }
-   //      });
-   //  });
+   $('#search').on('click',function(){
+          // alert(1);
+          var value=$('#data_search').val();
+          // alert(value);
+          $.ajax({
+              type : 'get',
+              url : '/searchBook',
+              data: {'data_search':value},
+              success:function(data){
+                  // console.log(data);
+                  $('#body_list_book').html(data);
+                  showModal();
+              },
+              error: function(err){
+                  alert("fail");
+                  console.log(err);
+              }
+          });
+      });
 
 });

@@ -89,7 +89,23 @@ jQuery(function($) {
         
     });
 
-    //Change Password chua hoan thanh...^^
+    $('#_history').click(function(){
+        var user_id = $(this).attr('data_id');
+        // alert(user_id);
+
+        $.ajax({
+            type : 'get',
+            url : '/history',
+            data: {'user_id':user_id},
+            success:function(data){
+               $('#body_book_history_user').html(data);
+               $('#history').modal('show');
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    });
 
     $('#change_password').click(function(){
 
@@ -215,7 +231,7 @@ jQuery(function($) {
                 console.log(data);
             },
             error: function(err){
-                alert(err);
+                alert("Error! Please, try again.");
                 console.log(err);
             }
         });
