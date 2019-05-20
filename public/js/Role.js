@@ -52,7 +52,7 @@ jQuery(function($) {
     $('a[data-type=update-role]').on('click', function(){
 
 
-        var id = $(this).attr("id");
+        var id = $(this).attr("id_edit_role");
         var name = $(this).attr("roleType");
         // alert(name);
 
@@ -94,7 +94,7 @@ jQuery(function($) {
 
     $('a[data-type=delete-role]').on('click', function(){
 
-        var id = $(this).attr("id");
+        var id = $(this).attr("id_edit_role");
 
         $('#role-delete').val(id);
         $('#deleteModal-role').modal('show');
@@ -220,6 +220,7 @@ jQuery(function($) {
             dataType: 'json',
             success: function(data) {
                 var output = "";
+                // alert(data.id);
                 // for(var i = 0; i < data.length; i++){
 
                     output =   
@@ -246,7 +247,7 @@ jQuery(function($) {
 
                     var id = $(this).attr("id_edit_role");
                     var name = $(this).attr("roleType");
-                    // alert(name);
+                    // alert(id);
 
                     $.ajax({
 

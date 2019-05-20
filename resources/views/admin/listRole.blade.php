@@ -48,13 +48,13 @@
                             <td class="text-center">{{$role->id}}</td>
                             <td class="text-center">{{$role->roleType}}</td>
                             <td class="text-center">
-                                <a href="#" class="text-blue" id="<?php echo $role->id; ?>" roleType="{{$role->roleType}}" data-type="update-role" data-toggle="modal">
+                                <a href="#" class="text-blue" id_edit_role="<?php echo $role->id; ?>" roleType="{{$role->roleType}}" data-type="update-role" data-toggle="modal">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
                             
                             <td class="text-center">
-                                <a class="text-red" href="#" id="<?php echo $role->id; ?>" data-type="delete-role" data-toggle="modal">
+                                <a class="text-red" href="#" id_delete_role="<?php echo $role->id; ?>" data-type="delete-role" data-toggle="modal">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 </a>
 
