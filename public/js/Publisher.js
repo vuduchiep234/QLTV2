@@ -50,7 +50,7 @@ jQuery(function($) {
     $('a[data-type=update-publisher]').on('click', function(){
 
 
-    	var id = $(this).attr("id");
+    	var id = $(this).attr("id_edit_publisher");
     	var name = $(this).attr("name");
     	// alert(name);
 
@@ -104,7 +104,7 @@ jQuery(function($) {
 
     $('a[data-type=delete-publisher]').on('click', function(){
 
-        var id = $(this).attr("id");
+        var id = $(this).attr("id_delete_publisher");
 
         $('#publisher-delete').val(id);
         $('#deleteModal-publisher').modal('show');

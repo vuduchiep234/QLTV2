@@ -50,7 +50,7 @@ jQuery(function($) {
     $('a[data-type=update-author]').on('click', function(){
 
 
-    	var id = $(this).attr("id");
+    	var id = $(this).attr("id_edit_author");
     	var name = $(this).attr("name");
     	// alert(name);
 
@@ -92,7 +92,7 @@ jQuery(function($) {
 
     $('a[data-type=delete-author]').on('click', function(){
 
-        var id = $(this).attr("id");
+        var id = $(this).attr("id_delete_author");
 
         $('#author-delete').val(id);
         $('#deleteModal-author').modal('show');
