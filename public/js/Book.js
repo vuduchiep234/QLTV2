@@ -144,11 +144,11 @@ jQuery(function($) {
 
         // var publisher_id = id_publisher_edit_click;
         var publisher_id = $('#_publisher_id').val();
-        console.log( "publisher_id  "+publisher_id );
+
         // var author_id = $('#_edit_author_id').val();
         // var genre_id = $('#_edit_genre_id').val();
         var publishedYear = $('#edit_published_year').val();
-        console.log(publisher_id);
+
         // var data={
         //     title: title,
         //     authors: author_id_,
@@ -170,8 +170,11 @@ jQuery(function($) {
         for (var ge_id in genre_id_){
             formData.append('genres[]',genre_id_[ge_id]);
         }
+        if (publisher_id!=null&&publisher_id!=''){
+            console.log('publisher_id '+publisher_id);
+            formData.append('publisher_id', publisher_id);
+        }
 
-        formData.append('publisher_id', publisher_id);
         formData.append('publishedYear', publishedYear);
         var ins = document.getElementById('edit_image_book').files[0];
         console.log("image "+ins);

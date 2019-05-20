@@ -60,14 +60,23 @@
                             <td class="text-center">{{$book->id}}</td>
                             <td class="text-center">{{$book->title}}</td>
                             <td class="text-center">
-                                @foreach($book->authors as $authors)
-                                    <?php echo $authors->name?>
-                                @endforeach</td>
+                                <?php
+                                $authorsName="";
+                                for ($i=0;$i<count($book->authors);$i++){
+                                    $authorsName=($i==0)?($book->authors)[$i]->name:$authorsName.",".($book->authors)[$i]->name;
+                                }
+                                echo $authorsName;
+                                ?>
+
 
                             <td class="text-center">
-                                @foreach($book->genres as $genres)
-                                    <?php echo $genres->genreType?>
-                                @endforeach</td>
+                            <?php
+                            $genreName="";
+                            for ($i=0;$i<count($book->authors);$i++){
+                                $genreName=($i==0)?($book->genres)[$i]->genreType:$genreName.",".($book->genres)[$i]->genreType;
+                            }
+                            echo $genreName;
+                            ?>
 
                             <td class="text-center">{{$book->Publisher->publisherName}}</td>
                             <td class="text-center">{{$book->publishedYear}}</td>

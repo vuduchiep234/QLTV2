@@ -2,7 +2,7 @@
 @section('content')
 
     <!-- Main content -->
-        
+
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
             <ul class="breadcrumb">
                 <li>
@@ -10,21 +10,21 @@
                     <a href="">Home</a>
                 </li>
 
-                
+
                 <li class="active">Return Book</li>
 
             </ul><!-- /.breadcrumb -->
 
         </div>
 
-        
+
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title"><b>Return Book</b></h3>
                 <!-- <button class="btn btn-sm btn-success" data-toggle="modal" id="addhistoryBook" style="float: right;">
                     <i class=" "></i>
                     Add
-                      
+
                 </button> -->
             </div>
             <!-- /.box-header -->
@@ -45,7 +45,7 @@
                   </tr>
                 </thead>
                 <tbody id="body_return_book">
-                    
+
                     @foreach($list as $history)
 
                         <tr row_id_return="{{$history->id}}">
@@ -60,9 +60,9 @@
                                     <i class="ace-icon fa fa-eye bigger-130"></i>
                                 </a>
                             </td>
-                            
+
                             <td class="text-center">
-                                <a class="text-blue" href="#" id="<?php echo $history->id; ?>" book_copies_id="{{$history->book_copies_id}}" user_id="{{$history->user_id}}" data-type="rent-history" data-toggle="modal">
+                                <a class="text-blue" href="#" id="<?php echo $history->id; ?>" book_copies_id="{{$history->book_copies_id}}" user_id="{{$history->user_id}}" data-type="return-history" data-toggle="modal">
                                     <i class="ace-icon fa fa-hourglass-end bigger-130"></i>
                                 </a>
 
@@ -71,16 +71,16 @@
                         </tr>
 
                     @endforeach
-                    
+
                 </tbody>
-                
+
               </table>
               <div style="margin-left: 0px;">{!! $list->links() !!}</div>
             </div>
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
-    
+
     <!-- /.content -->
 
 <div class="modal fade" id="return-history" order="dialog">
@@ -122,25 +122,25 @@
                                 </div>
 
                             </div>
-                            
+
                             <!-- <div class="col-sm-9">
 
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-12 no-padding-right" for="password2" id="detail_state"></label>
-                                    
+
                                 </div>
                             </div> -->
 
                         </div>
                     </div>
 
-                </div>  
+                </div>
                 <br/>
                 <div class="modal-footer">
                     <input type="hidden" name="return_id" id="return_id" value="">
                     <input type="hidden" name="return_user_id" id="return_user_id" value="">
                     <input type="hidden" name="return_bookCopy_id" id="return_bookCopy_id" value="">
-                    <button class="btn btn-info" type="submit" id="return_id">
+                    <button class="btn btn-info" type="submit" id="return_id_">
                         <i class="ace-icon fa fa-check bigger-110"></i>
                         Return
                     </button>
@@ -191,19 +191,19 @@
                                 </div>
 
                             </div>
-                            
+
                             <!-- <div class="col-sm-9">
 
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-12 no-padding-right" for="password2" id="detail_state"></label>
-                                    
+
                                 </div>
                             </div> -->
 
                         </div>
                     </div>
 
-                </div>  
+                </div>
                 <br/>
                 <div class="modal-footer">
                     <input type="hidden" name="active_user_id" id="active_user_id" value="">

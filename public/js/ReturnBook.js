@@ -30,7 +30,7 @@ jQuery(function($) {
 				alert('fail');
 			}
 		});
-		
+
 
 		$('#return-history').modal('show');
 	});
@@ -64,12 +64,12 @@ jQuery(function($) {
 				alert('fail');
 			}
 		});
-		
+
 
 		$('#active-history').modal('show');
 	});
 
-	$('#return_id').click(function(){
+	$('#return_id_').click(function(){
 		var user_id = $('#return_user_id').val();
 		var book_copy_id = $('#return_bookCopy_id').val();
 		var id = $('#return_id').val();
@@ -90,7 +90,7 @@ jQuery(function($) {
 
 	        	alert('Success !');
 	        	$('#return-history').modal('hide');
-				$("tr[row_id_return="+id+"]").remove();   
+				$("tr[row_id_return="+id+"]").remove();
 	        },
 			error: function(err){
 				alert('Fail !');
@@ -141,7 +141,7 @@ jQuery(function($) {
 							alert('fail');
 						}
 					});
-					
+
 
 					$('#return-history').modal('show');
 				});
@@ -175,11 +175,11 @@ jQuery(function($) {
 							alert('fail');
 						}
 					});
-					
+
 
 					$('#active-history').modal('show');
 				});
-                
+
             },
             error: function(err){
                 alert("fail");
@@ -188,5 +188,5 @@ jQuery(function($) {
         });
     });
 	}
-	
+
 });

@@ -29,7 +29,7 @@ jQuery(function($) {
 				alert('fail');
 			}
 		});
-		
+
 
 		$('#rent-history').modal('show');
 	});
@@ -67,10 +67,10 @@ jQuery(function($) {
 		$('#active-history').modal('show');
 	});
 
-	$('#rent_id').click(function(){
+	$('#rent_id_').click(function(){
 		var user_id = $('#rent_user_id').val();
 		var book_copy_id = $('#rent_bookCopy_id').val();
-		var id = $('#rent_id');
+		var id = $('#rent_id').val();
 		// alert(user_id);
 		// alert(book_copy_id);
 
@@ -86,10 +86,10 @@ jQuery(function($) {
 			},
 			success: function(data) {
 
-	        	alert('Success !');
+	        	alert('Success ! ');
 	        	$('#rent-history').modal('hide');
-
-	        	$("tr[row_id_rent="+id+"]").remove();   
+                console.log(id);
+	        	$("tr[row_id_rent="+id+"]").remove();
 	        },
 			error: function(err){
 				alert('Fail !');
@@ -110,7 +110,7 @@ jQuery(function($) {
 	            success:function(data){
 	                // console.log(data);
 	                $('#body_rent_book').html(data);
-	                
+
 	                $('a[data-type=rent-history]').on('click', function(){
 						// alert(1);
 						var id = $(this).attr('book_copies_id');
@@ -139,7 +139,7 @@ jQuery(function($) {
 								alert('fail');
 							}
 						});
-						
+
 
 						$('#rent-history').modal('show');
 					});
