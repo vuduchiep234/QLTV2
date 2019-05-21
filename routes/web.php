@@ -143,3 +143,5 @@ Route::get('/searchReturnBook','AdminController@searchReturnBook');
 Route::get('/searchBookHistory','AdminController@searchBookHistory');
 
 Route::get('/searchBookUser','UserController@searchBookUser')->name('searchBookUser');
+
+Route::get('/history','UserController@bookHistory')->name('bookHistory');

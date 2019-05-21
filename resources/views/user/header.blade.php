@@ -34,6 +34,8 @@
 		              	<!-- <li> -->
 		                  	<!-- <div class="col-xs-4 text-center"> -->
 		                    	<a id="" data_id="{{Session::get('user_id')}}" href="#" data-toggle="modal"><span class="hidden-xs _change_password text-center" style="color: black; font-size: 12px; ">Đổi mật khẩu</span></a>
+
+		                    	<a id="_history" data_id="{{Session::get('user_id')}}" href="#" data-toggle="modal"><span class="hidden-xs  text-center" style="color: black; font-size: 12px; ">Histories</span></a>
 		                  	<!-- </div> -->
 		              	<!-- </li> -->
 		              	<!-- <li> -->

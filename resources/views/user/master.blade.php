@@ -158,6 +158,75 @@
 	            </div>
 			</div>
 
+			<div class="modal fade" id="history" role="dialog">
+	            <div class="modal-dialog">
+
+	                <div class="modal-content">
+	                    <!-- <form > -->
+	                        <!-- <input type="hidden" name="_method" value="delete"> -->
+	                        <!-- {{csrf_field()}} -->
+
+	                <!-- Modal content-->
+
+	                        <div class="modal-header">
+	                        	<h4 class="modal-title">History</h4>
+	                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+	                        </div>
+	                        <div class="modal-body">
+
+	                            <!-- <span id="form_output"></span> -->
+	                            <!-- <div class="row" > -->
+	                                <div class="col-xs-12" style="text-align: center;">
+	                                    <!-- PAGE CONTENT BEGINS -->
+	                                    <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <!-- <th class="text-center">ID</th> -->
+                    <!-- <th class="text-center">ID Book Copy</th> -->
+                    <!-- <th class="text-center">Book Title</th> -->
+                    <th class="text-center">ID User</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">ID Book</th>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Borrowed date</th>
+                    <th class="text-center">State</th>
+                    <!-- <th class="text-center">Return</th> -->
+                    <!-- <th class="text-center">State</th> -->
+                    <!-- <th class="text-center">Delete</th> -->
+                  </tr>
+                </thead>
+                <tbody id="body_book_history_user">
+            
+                  
+                </tbody>
+                
+              </table>
+              
+            </div>
+
+	                                </div>
+	                            <!-- </div> -->
+
+	                        </div>
+
+	                        <div class="modal-footer">
+	                            <input type="hidden" id="card_user_id" value="" />
+	                            <input type="button" value="Ok" data-dismiss="modal" >
+
+	                            <!-- <input type="button" id="register_card" value="Yes"> -->
+	                                <!-- <i class="ace-icon fa fa-trash-o bigger-120 orange"></i> -->
+
+
+	                        </div>
+	                    <!-- </form> -->
+
+
+	                </div>
+	            </div>
+			</div>
+
 
 			<div class="modal fade" id="confirm_logout" role="dialog">
 			    <div class="modal-dialog">

@@ -116,7 +116,7 @@
                                     <label class="col-sm-4 control-label no-padding-right" for="form-field-1" style="margin-top: 22px;"><b>Quantity:</b></label>
 
                                     <div class="col-sm-7">
-                                        <input type="text" placeholder="Enter quantity book ..." class="form-control"  name="quantity" id="quantity" style="width: 350px; margin-top: -40px; margin-left: 80px;"/>
+                                        <input type="text" placeholder="Enter quantity book ..." class="form-control"  name="quantity" id="quantity" style="width: 320px; margin-top: 15px; margin-left: -20px;"/>
                                     </div>
                                 </div>
 

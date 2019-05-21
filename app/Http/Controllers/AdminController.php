@@ -281,6 +281,115 @@ class AdminController extends Controller
         }
     }
 
+    public function searchBook(Request $request){
+        if($request->ajax()){
+
+            $result="";
+
+            $history = Book::with('authors','genres','Publisher','BookQuantity','images')
+            ->join('publishers', 'publishers.id', 'books.publisher_id')
+            ->join('author_book', 'books.id', 'author_book.book_id')
+            ->join('authors', 'authors.id', 'author_book.author_id')
+            ->join('book_genre', 'books.id', 'book_genre.book_id')
+            ->join('genres', 'genres.id', 'book_genre.genre_id')
+            ->select('books.*', 'authors.name', 'genres.genreType', 'publishers.publisherName')
+            // ->join('publishers', 'publishers.id', 'books.publisher_id')
+            ->where('books.title','LIKE','%'.$request->data_search.'%')
+            ->orWhere('books.publishedYear','LIKE','%'.$request->data_search.'%')
+            ->orWhere('authors.name','LIKE','%'.$request->data_search.'%')
+            ->orWhere('genres.genreType','LIKE','%'.$request->data_search.'%')
+            ->orWhere('publishers.publisherName','LIKE','%'.$request->data_search.'%')
+            ->get();
+            $total_row = $history->count();
+            if($total_row > 0){
+                foreach ($history as  $key => $book) {
+                    $result .= 
+
+                            "<tr row_id_book='{{$book->id}}'>"
+                            ."<td class='text-center'>{{$book->id}}</td>"
+                            ."<td class='text-center'>{{$book->title}}</td>"
+                            ."<td class='text-center'>"
+                                ."@foreach($book->authors as $authors)
+                                                                    <?php echo $authors->name?>
+                                                                @endforeach"
+                            ."</td>"
+
+                            ."<td class='text-center'>"
+                                ."@foreach($book->genres as $genres)
+                                    <?php echo $genres->genreType?>
+                                @endforeach"
+                            ."</td>"
+
+                            ."<td class='text-center'>{{$book->Publisher->publisherName}}</td>"
+                            ."<td class='text-center'>{{$book->publishedYear}}</td>"
+                            ."<td class='text-center'>{{$book->BookQuantity->quantity}}</td>"
+
+                            ."<td class='text-center'>"
+                                ."<a href='#'' class='text-yellow' id='<?php echo $book->id; ?>' id_edit_book='{{$book->id}}' title='{{$book->title}}' publisher_id='{{$book->publisher_id}}' publishedYear='{{$book->publishedYear}}'  data-type='import-book' data-toggle='modal'>
+                                                                    <i class='ace-icon fa fa-pencil bigger-130'></i>
+                                                                </a>"
+                            ."</td>"
+                            
+                            ."<?php
+                            $genres=$book->genres;
+                            $authors=$book->authors;
+                            $genresID='';
+                            $authorsID='';
+                            for ($i=0;$i<count($genres);$i++){
+                                if ($i==0){
+                                    $genresID=$genres[$i]->id;
+                                }else{
+                                    $genresID=$genresID.','.$genres[$i]->id;
+                                }
+
+                            }
+                            for ($i=0;$i<count($authors);$i++){
+                                if ($i==0){
+                                    $authorsID=$authors[$i]->id;
+                                }else{
+                                    $authorsID=$authorsID.','.$authors[$i]->id;
+                                }
+
+                            }
+                            // echo $authorsID;
+                            if (empty (end($book->images))){
+
+                                echo '<td class='text-center'>'
+                                    <a href='#' class='text-blue' id='id_edit_book' data-toggle='modal' id_edit_book=".$book->id." data-type='update-book' title=".$book->title." publisher_id=".$book->publisher_id." author_id=".$authorsID." genre_id=".$genresID." publishedYear=".$book->publishedYear." image=".">"
+                                    ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                                    ."</a>"
+                                    ."</td>;"
+
+
+                            ."}else{
+
+                                echo '<td class='text-center'>'
+                                    <a href='#' class='text-blue' id='id_edit_book'  data-toggle='modal' id_edit_book=".$book->id." data-type='update-book' title=".$book->title." publisher_id=".$book->publisher_id." author_id=".$authorsID." genre_id=".$genresID." publishedYear=".$book->publishedYear." image=".($book->images[0])->imageURL.">"
+                                    ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
+                                    ."</a>"
+                                    ."</td>;"
+                            ."}"
+                        
+                            ."<td class='text-center'>"
+                                ."<a class='text-red' href='#'' id_delete_book='<?php echo $book->id; ?>' data-type='delete-book' data-toggle='modal'>
+                                                                    <i class='ace-icon fa fa-trash-o bigger-130'></i>
+                                                                </a>"
+
+                            ."</td>"
+                        ."</tr>";
+                }
+                
+            }
+            else{
+               $result .= 
+                   "<tr>"
+                        ."<td class='text-center' colspan='10'>No Data Found</td>"
+                   ."</tr>";
+            }
+            return Response($result);
+        }
+    }
+
     public function searchBookHistory(Request $request){
         if($request->ajax()){
 
