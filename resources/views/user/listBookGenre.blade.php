@@ -26,7 +26,7 @@
 							@foreach($list as $book)
 							<div class="title text-center">
 								<h1 class="mb-10">{{$book->genreType}}</h1>
-								<p>Tong hop sach theo the loai</p>
+								<p>Tổng hợp sách theo thể loại</p>
 							</div>
 							@break
 							@endforeach
@@ -36,7 +36,7 @@
 						<div class="active-popular-carusel" id="">
 							@foreach($list as $book)
 							<div class="single-popular-carusel">
-							
+
 								<div class="thumb-wrap relative">
 									<div class="thumb relative">
 										<div class="overlay overlay-bg"></div>
@@ -63,7 +63,7 @@
 										Năm xuất bản: {{$book->publishedYear}}
 									</p>
 								</div>
-								
+
 							</div>
 							@endforeach
 						</div>
