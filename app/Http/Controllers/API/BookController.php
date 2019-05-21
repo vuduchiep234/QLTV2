@@ -37,9 +37,10 @@ class BookController extends APIController
         /**
          * @var BookService $bookService
          */
+        $id=($id==null)?$request->getId():$id;
         $bookService = $this->getService();
         $bookDecorator = new GetBookDecorator($bookService);
-        return $bookDecorator->getModel($request->all(), $id);
+        return $bookDecorator->getModel($request->getRelations(), $id);
     }
 
     public function post(BookPostRequest $request)

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Decorators\BookDecorators\GetAllBookDecorator;
+use App\Models\Book;
+use App\Repositories\Eloquent\EloquentBookRepository;
 use App\Services\BookService;
+use App\Services\Eloquent\EloquentBookService;
 use Illuminate\Http\Request;
 Use DB;
 
@@ -20,7 +24,9 @@ class UserController extends Controller
     public function getHome(){
 
         $data['list'] = DB::table('publishers')->join('books', 'publishers.id', '=', 'books.publisher_id')->join('book_images', 'book_images.book_id', '=', 'books.id')->join('images', 'book_images.image_id', '=', 'images.id')->join('book_quantities', 'book_quantities.book_id', '=', 'books.id')->select('books.*', 'images.imageURL', 'publishers.publisherName', 'book_quantities.quantity')->get();
-    	return view('user.home', $data);
+        $bookDecorator = new GetAllBookDecorator(new EloquentBookService(new EloquentBookRepository(new Book())));
+        $attributes['relations']=['images','publisher','authors','genres','BookQuantity'];
+        return view('user.home',["data"=>$data, "list"=>$bookDecorator->getAll($attributes)]);
 
     }
 
@@ -77,7 +83,7 @@ class UserController extends Controller
             // $history = DB::table('books')->join('book_images', 'books.id', 'book_images.book_id')->join('images', 'images.id', 'book_images.image_id')->select('books.*', 'images.imageURL')
             // ->where('books.title','LIKE','%'.$request->data_search.'%')
             // ->get();
-             
+
             $data =  DB::table('books')->join('book_images', 'books.id', 'book_images.book_id')->join('images', 'images.id', 'book_images.image_id')->select('books.*', 'images.imageURL')
             ->where('books.title','LIKE','%'.$request->data_search.'%')
             ->get();
@@ -86,7 +92,7 @@ class UserController extends Controller
               {
                 $href = "{{route('detailBook', 79)}}";
                $output .=
-               "<li><a href='/detailBook/$row->id'>".$row->title."</a></li>"; 
+               "<li><a href='/detailBook/$row->id'>".$row->title."</a></li>";
               }
               $output .= "</ul>";
               // echo $output;
@@ -94,18 +100,18 @@ class UserController extends Controller
             // $total_row = $history->count();
             // if($total_row > 0){
             //     foreach ($history as  $key => $data) {
-            //         $result .= 
+            //         $result .=
 
             //             "<tr row_id_book='$data->id'>"
             //                 ."<td class='text-center'>$data->id</td>"
             //                 ."<td class='text-center'>$data->title</td>"
-                            
+
             //             ."</tr>";
             //     }
-                
+
             // }
             // else{
-            //    $result .= 
+            //    $result .=
             //        "<tr>"
             //             ."<td class='text-center' colspan='5'>No Data Found</td>"
             //        ."</tr>";

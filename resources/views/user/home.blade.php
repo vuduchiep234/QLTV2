@@ -16,20 +16,25 @@
 			<div class="active-popular-carusel" id="_list_book">
 				<!-- <input type="hidden" name="publisher" id="publisher" value="">
  -->
-				@foreach($list as $book)
+				@foreach($list as $books)
+                   <?php
+					$book=$books["book"];
+					$publisher=$book->publisher;
+					?>
+
 					<div class="single-popular-carusel">
-						
+
 						<div class="thumb-wrap relative">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 
 								<a id="{{$book->id}}" href="{{route('detailBook', $book->id)}}">
-									<img style="width: 270px; height: 300px" class="img-fluid" src="{{$book->imageURL}}" alt="">
+									<img style="width: 270px; height: 300px" class="img-fluid" src="{{($book->images[0])->imageURL}}" alt="">
 								</a>
 							</div>
 							<div class="meta d-flex justify-content-between">
 								<p><span class="lnr lnr-users"></span>  <span class="lnr lnr-bubble"></span></p>
-								<h4 style="color: red;">{{$book->quantity}}</h4>
+								<h4 style="color: red;">{{$books["availableQuantity"]}}</h4>
 							</div>
 						</div>
 						<div class="details">
@@ -39,7 +44,7 @@
 								</h4>
 							</a>
 							<p>
-								Nhà xuất bản: <a id="{{$book->publisher_id}}" href="{{route('book', $book->publisher_id)}}">{{$book->publisherName}}</a>
+								Nhà xuất bản: <a id="{{$book->publisher_id}}" href="{{route('book', $book->publisher_id)}}">{{$publisher->publisherName}}</a>
 							</p>
 							<p>
 								Năm xuất bản: {{$book->publishedYear}}

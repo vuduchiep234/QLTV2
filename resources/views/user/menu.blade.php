@@ -11,7 +11,7 @@
 
     </ul>
   </li>
-  <li class="menu-has-children"><a href="#">Publishers</a>
+  <li class="menu-has-children"><a href="#">Nhà xuất bản</a>
     <ul>
       @foreach($listPublisher as $publisher)
       <li><a href="{{route('book', $publisher->id)}}">{{$publisher->publisherName}}</a></li>
@@ -20,5 +20,5 @@
     </ul>
   </li>
 
-  <li><a href="contact.html">Contact</a></li>
+  <li><a href="contact.html">Liên hệ</a></li>
 </ul>

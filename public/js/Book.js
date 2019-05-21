@@ -104,7 +104,7 @@ jQuery(function($) {
             //
             // },
             success: function () {
-                console.log('success');
+                alert("Success");
                 $('#myModal-book').modal('hide');
                 loadData();
             },
@@ -260,7 +260,7 @@ jQuery(function($) {
             success: function(data){
                 alert('Success !');
                 $('#importModal-book').modal('hide');
-                loadData();
+                load_data(book_id);
             },
             error: function(err){
                 alert('Import fail');
@@ -288,7 +288,7 @@ jQuery(function($) {
 
        $.ajax({
 
-           url: '/api/v1/books/get?id='+id+'&relations[]=authors&relations[]=genres&relations[]=publisher',
+           url: '/api/v1/books/get/'+id+'?relations[]=authors&relations[]=genres&relations[]=publisher',
            type: 'get',
            dataType: 'json',
            success: function(data) {

@@ -34,9 +34,11 @@
                   <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">ID Book Copy</th>
-                    <th class="text-center">ID User</th>
+                      <th class="text-center">ID User</th>
                     <th class="text-center">Name</th>
+
                     <th class="text-center">ID Book</th>
+                    <th class="text-center">Title</th>
                     <th class="text-center">Detail</th>
                     <th class="text-center">Rent</th>
                     <!-- <th class="text-center">Return</th> -->
@@ -49,6 +51,7 @@
 
                         <tr row_id_rent="{{$history->id}}">
                             <td class="text-center">{{$history->id}}</td>
+                            <td class="text-center">{{$history->book_copies_id}}</td>
                             <td class="text-center">{{$history->user_id}}</td>
                             <td class="text-center">{{$history->name}}</td>
                             <td class="text-center">{{$history->book_id}}</td>

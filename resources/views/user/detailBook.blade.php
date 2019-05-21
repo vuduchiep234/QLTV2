@@ -28,7 +28,7 @@
 						<div class="col-lg-8 left-contents">
 							@foreach($list as $book)
 							<div class="main-image">
-								<img class="img-fluid" src="{{$book->imageURL}}" alt="">
+								<img class="img-fluid" style="width: 300px; height: 400px; margin-left: 100px; margin-bottom: 10px;" src="{{$book->imageURL}}" alt="">
 							</div>
 							@endforeach
 							<!-- <div class="jq-tab-wrapper" id="horizontalTab">

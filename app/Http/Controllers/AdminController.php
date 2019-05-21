@@ -39,7 +39,7 @@ class AdminController extends Controller
 
     public function getListBook(){
 
-        $data['list'] = Book::with('authors','genres','Publisher','BookQuantity','images')->paginate(5);
+        $data['list'] = Book::with('authors','genres','Publisher','BookQuantity','images')->paginate(10);
         $data['listP'] = Publisher::all();
         $data['listA'] = Author::all();
         $data['listG'] = Genre::all();
@@ -117,10 +117,10 @@ class AdminController extends Controller
                                         ."</a>"
                                     ."</td>"
                             ."</tr>";
-                }  
+                }
             }
             else{
-               $result .= 
+               $result .=
                    "<tr>"
                         ."<td class='text-center' colspan='5'>No Data Found</td>"
                    ."</tr>";
@@ -142,7 +142,7 @@ class AdminController extends Controller
             $total_row = $user->count();
             if($total_row > 0){
                 foreach ($user as  $key => $data) {
-                    $result .= 
+                    $result .=
 
                             "<tr row_id_user='$data->id'>"
                             ."<td class='text-center'>$data->id</td>"
@@ -154,7 +154,7 @@ class AdminController extends Controller
                                     ."<i class='ace-icon fa fa-pencil bigger-130'></i>"
                                 ."</a>"
                             ."</td>"
-                            
+
                             ."<td class='text-center'>"
                                 ."<a class='text-red' href='#'' id_delete_user='$data->id' data-type='delete-user' data-toggle='modal'>"
                                     ."<i class='ace-icon fa fa-trash-o bigger-130'></i>"
@@ -163,10 +163,10 @@ class AdminController extends Controller
                             ."</td>"
                         ."</tr>";
                 }
-                
+
             }
             else{
-               $result .= 
+               $result .=
                    "<tr>"
                         ."<td class='text-center' colspan='5'>No Data Found</td>"
                    ."</tr>";
@@ -201,7 +201,7 @@ class AdminController extends Controller
                 }
             }
             else{
-               $result .= 
+               $result .=
                    "<tr>"
                         ."<td class='text-center' colspan='5'>No Data Found</td>"
                    ."</tr>";
@@ -236,7 +236,7 @@ class AdminController extends Controller
                 }
             }
             else{
-               $result .= 
+               $result .=
                    "<tr>"
                         ."<td class='text-center' colspan='5'>No Data Found</td>"
                    ."</tr>";
@@ -269,10 +269,10 @@ class AdminController extends Controller
                                     ."</td>"
                             ."</tr>";
                 }
-                
+
             }
             else{
-               $result .= 
+               $result .=
                    "<tr>"
                         ."<td class='text-center' colspan='5'>No Data Found</td>"
                    ."</tr>";
@@ -295,7 +295,7 @@ class AdminController extends Controller
             $total_row = $history->count();
             if($total_row > 0){
                 foreach ($history as  $key => $data) {
-                    $result .= 
+                    $result .=
 
                             "<tr row_id_user='$data->id'>"
                             ."<td class='text-center'>$data->id</td>"
@@ -309,7 +309,7 @@ class AdminController extends Controller
                                     ."<i class='ace-icon fa fa-eye bigger-130'></i>"
                                 ."</a>"
                             ."</td>"
-                            
+
                             ."<td class='text-center'>"
                                 ."<a class='text-red' href='#'' id_delete_history='$data->id' data-type='delete-history' data-toggle='modal'>"
                                     ."<i class='ace-icon fa fa-trash-o bigger-130'></i>"
@@ -318,10 +318,10 @@ class AdminController extends Controller
                             ."</td>"
                         ."</tr>";
                 }
-                
+
             }
             else{
-               $result .= 
+               $result .=
                    "<tr>"
                         ."<td class='text-center' colspan='5'>No Data Found</td>"
                    ."</tr>";
@@ -344,7 +344,7 @@ class AdminController extends Controller
             $total_row = $history->count();
             if($total_row > 0){
                 foreach ($history as  $key => $data) {
-                    $result .= 
+                    $result .=
 
                             "<tr row_id_rent='$data->id'>"
                             ."<td class='text-center'>$data->id</td>"
@@ -358,7 +358,7 @@ class AdminController extends Controller
                                     ."<i class='ace-icon fa fa-eye bigger-130'></i>"
                                 ."</a>"
                             ."</td>"
-                            
+
                             ."<td class='text-center'>"
                                 ."<a class='text-green' href='#' id='<?php echo $data->id; ?>' book_copies_id='{{$data->book_copies_id}}' user_id='{{$data->user_id}}' data-type='rent-history' data-toggle='modal'>"
                                     ."<i class='ace-icon fa fa-hourglass-start bigger-130'></i>"
@@ -368,10 +368,10 @@ class AdminController extends Controller
                             ."<td class='text-center'>$data->state_detail</td>"
                         ."</tr>";
                 }
-                
+
             }
             else{
-               $result .= 
+               $result .=
                    "<tr>"
                         ."<td class='text-center' colspan='5'>No Data Found</td>"
                    ."</tr>";
@@ -395,7 +395,7 @@ class AdminController extends Controller
             $total_row = $history->count();
             if($total_row > 0){
                 foreach ($history as  $key => $data) {
-                    $result .= 
+                    $result .=
 
                             "<tr row_id_return='$data->id'>"
                             ."<td class='text-center'>$data->id</td>"
@@ -409,7 +409,7 @@ class AdminController extends Controller
                                     ."<i class='ace-icon fa fa-eye bigger-130'></i>"
                                 ."</a>"
                             ."</td>"
-                            
+
                             ."<td class='text-center'>"
                                 ."<a class='text-blue' href='#' id='<?php echo $data->id; ?>' book_copies_id='{{$data->book_copies_id}}' user_id='{{$data->user_id}}' data-type='return-history' data-toggle='modal'>"
                                     ."<i class='ace-icon fa fa-hourglass-end bigger-130'></i>"
@@ -419,10 +419,10 @@ class AdminController extends Controller
                             ."<td class='text-center'>$data->state_detail</td>"
                         ."</tr>";
                 }
-                
+
             }
             else{
-               $result .= 
+               $result .=
                    "<tr>"
                         ."<td class='text-center' colspan='5'>No Data Found</td>"
                    ."</tr>";

@@ -2,7 +2,7 @@
 @section('content')
 
     <!-- Main content -->
-        
+
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
             <ul class="breadcrumb">
                 <li>
@@ -10,21 +10,21 @@
                     <a href="">Home</a>
                 </li>
 
-                
+
                 <li class="active">Book History</li>
 
             </ul><!-- /.breadcrumb -->
 
         </div>
 
-        
+
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title"><b>List Book History</b></h3>
                 <!-- <button class="btn btn-sm btn-success" data-toggle="modal" id="addhistoryBook" style="float: right;">
                     <i class=" "></i>
                     Add
-                      
+
                 </button> -->
             </div>
             <!-- /.box-header -->
@@ -39,15 +39,19 @@
                     <th class="text-center">Name</th>
                     <th class="text-center">ID Book</th>
                     <th class="text-center">Title</th>
-                    <th class="text-center">Detail</th>
+
+
+                    <th class="text-center">Borrowed Date</th>
+                    <th class="text-center">Returned Date</th>
                     <!-- <th class="text-center">Rent</th> -->
                     <!-- <th class="text-center">Return</th> -->
                     <!-- <th class="text-center">State</th> -->
+                      <th class="text-center">Detail</th>
                     <th class="text-center">Delete</th>
                   </tr>
                 </thead>
                 <tbody id="body_book_history">
-            
+
                   @foreach($list as $history)
 
                         <tr>
@@ -57,12 +61,14 @@
                             <td class="text-center">{{$history->name}}</td>
                             <td class="text-center">{{$history->book_id}}</td>
                             <td class="text-center">{{$history->title}}</td>
+                            <td class="text-center">{{$history->created_at}}</td>
+                            <td class="text-center">{{$history->updated_at}}</td>
                             <td class="text-center">
                                 <a href="#" class="text-yellow" id_active_history="<?php echo $history->id; ?>" book_copies_id="{{$history->book_copies_id}}" user_id="{{$history->user_id}}" name="{{$history->name}}" book_id="{{$history->book_id}}" title="{{$history->title}}" data-type="detail_history" data-toggle="modal">
                                     <i class="ace-icon fa fa-eye bigger-130"></i>
                                 </a>
                             </td>
-                            
+
                             <td class="text-center">
                                 <a class="text-red" href="#" id_delete_history="<?php echo $history->id; ?>" data-type="delete-history" data-toggle="modal">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
@@ -78,16 +84,16 @@
                         </tr>
 
                     @endforeach
-                    
+
                 </tbody>
-                
+
               </table>
               <div style="margin-left: 0px;">{!! $list->links() !!}</div>
             </div>
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
-    
+
     <!-- /.content -->
 
 
@@ -95,20 +101,20 @@
 
 <div class="modal fade" id="deleteModal-BookHistory" role="dialog">
     <div class="modal-dialog">
-        
+
         <div class="modal-content">
             <!-- <form method="get" class="form-delete">
                 <input type="hidden" name="_method" value="delete">
                 {{csrf_field()}} -->
-            
+
         <!-- Modal content-->
-        
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h3 class="modal-title text-centere"><b>Confirm</b></h3>
                 </div>
                 <div class="modal-body">
-                    
+
                     <span id="form_output"></span>
                     <div class="row">
                         <div class="col-xs-12">
@@ -118,8 +124,8 @@
                         </div>
                     </div>
 
-                </div>  
-                
+                </div>
+
                 <div class="modal-footer">
                     <input type="hidden" id="id_book_history" value="" />
                     <button class="btn btn-default btn-round pull-left" data-dismiss="modal">
@@ -130,11 +136,11 @@
                         <i class="ace-icon fa fa-trash-o bigger-120 orange"></i>
                         Yes
                     </button>
-                    
+
                 </div>
             <!-- </form> -->
-                
-            
+
+
         </div>
     </div>
 </div>
@@ -178,19 +184,19 @@
                                 </div>
 
                             </div>
-                            
+
                             <!-- <div class="col-sm-9">
 
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-12 no-padding-right" for="password2" id="detail_state"></label>
-                                    
+
                                 </div>
                             </div> -->
 
                         </div>
                     </div>
 
-                </div>  
+                </div>
                 <br/>
                 <div class="modal-footer">
                     <input type="hidden" name="rent_user_id" id="rent_user_id" value="">
@@ -244,19 +250,19 @@
                                 </div>
 
                             </div>
-                            
+
                             <!-- <div class="col-sm-9">
 
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-12 no-padding-right" for="password2" id="detail_state"></label>
-                                    
+
                                 </div>
                             </div> -->
 
                         </div>
                     </div>
 
-                </div>  
+                </div>
                 <br/>
                 <div class="modal-footer">
                     <input type="hidden" name="return_user_id" id="return_user_id" value="">
@@ -312,19 +318,19 @@
                                 </div>
 
                             </div>
-                            
+
                             <!-- <div class="col-sm-9">
 
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-12 no-padding-right" for="password2" id="detail_state"></label>
-                                    
+
                                 </div>
                             </div> -->
 
                         </div>
                     </div>
 
-                </div>  
+                </div>
                 <br/>
                 <div class="modal-footer">
                     <input type="hidden" name="active_user_id" id="active_user_id" value="">
@@ -355,11 +361,11 @@
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
 
-                            
+
                              <div class="col-sm-11" style="margin-top: 5px;">
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password2" style="margin-top: 5px;">Sách bản sao:</label>
-                                    
+
                                     <div class="input-group " style="width: 350px;" >
                                       <div class="input-group-btn" style="margin-left: 30px;">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Hành động
@@ -382,7 +388,7 @@
                             <div class="col-sm-11" style="margin-top: 5px;">
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password2" style="margin-top: 5px;">Người dùng:</label>
-                                    
+
                                     <div class="input-group " style="width: 350px;" >
                                       <div class="input-group-btn" style="margin-left: 30px;">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Hành động
@@ -405,7 +411,7 @@
                         </div>
                     </div>
 
-                </div>  
+                </div>
                 <br/>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
@@ -439,7 +445,7 @@
                             <div class="col-sm-11" style="margin-top: 5px;">
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password2" style="margin-top: 5px;">Sách bản sao:</label>
-                                    
+
                                     <div class="input-group " style="width: 350px;" >
                                       <div class="input-group-btn" style="margin-left: 30px;">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Hành động
@@ -462,7 +468,7 @@
                             <div class="col-sm-11" style="margin-top: 5px;">
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password2" style="margin-top: 5px;">Người dùng:</label>
-                                    
+
                                     <div class="input-group " style="width: 350px;" >
                                       <div class="input-group-btn" style="margin-left: 30px;">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Hành động
@@ -485,7 +491,7 @@
                         </div>
                     </div>
 
-                </div>   
+                </div>
                 <br/>
                 <div class="modal-footer">
                     <input type="hidden" id="member-id" name="member-id" value="" />
